@@ -1,0 +1,334 @@
+:root {
+  --bg: #0b0b0b;
+  --ink: #f2f2ef;
+  --mut: #8a8a85;
+  --line: rgba(255, 255, 255, 0.08);
+  --accent: #cde64b;
+  --font-body: "Outfit Variable", -apple-system, "Segoe UI", "Noto Sans", sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 48px);
+}
+
+h2 {
+  font-size: clamp(2rem, 4.5vw, 3.6rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: clamp(48px, 7vw, 88px);
+}
+
+/* ---------- grain ---------- */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- preloader ---------- */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.pre-center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.pre-word {
+  position: absolute;
+  font-size: clamp(2.6rem, 8vw, 6rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  will-change: transform, opacity, filter;
+}
+
+.pre-ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.pre-ambient span {
+  position: absolute;
+  color: var(--ink);
+  white-space: nowrap;
+  will-change: transform, opacity, filter;
+}
+
+.pre-progress {
+  position: absolute;
+  bottom: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.pre-progress-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform-origin: left;
+}
+
+.pre-lang {
+  position: absolute;
+  bottom: 34px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--mut);
+}
+
+.pre-glow {
+  position: absolute;
+  width: 44vw;
+  height: 44vw;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.08;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.pre-glow.a {
+  background: radial-gradient(circle, #cde64b 0%, transparent 65%);
+  top: -10%;
+  left: -8%;
+  animation: glow-drift 11s ease-in-out infinite alternate;
+}
+
+.pre-glow.b {
+  background: radial-gradient(circle, #4b6be6 0%, transparent 65%);
+  bottom: -12%;
+  right: -6%;
+  animation: glow-drift 13s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes glow-drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(6vw, 4vh, 0) scale(1.15); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pre-glow { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- scroll progress ---------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform-origin: left;
+  z-index: 85;
+}
+
+/* ---------- nav ---------- */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px clamp(20px, 4vw, 48px);
+  mix-blend-mode: difference;
+}
+
+.nav-mark {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.65);
+  transition: color 0.25s ease;
+}
+
+.nav-links a:hover {
+  color: #fff;
+}
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: clamp(64px, 10vh, 120px);
+  overflow: hidden;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.hero-role {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--mut);
+  margin-bottom: 20px;
+}
+
+.hero-name {
+  font-size: clamp(3.2rem, 12.5vw, 10.5rem);
+  font-weight: 650;
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.hero-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.hero-line > span {
+  display: block;
+  will-change: transform;
+}
+
+.hero-name .thin {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(242, 242, 239, 0.65);
+  transition: -webkit-text-stroke-color 0.4s ease;
+}
+
+.hero-name .thin:hover {
+  -webkit-text-stroke-color: var(--accent);
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.hero-sub {
+  margin-top: 36px;
+  max-width: 44ch;
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--mut);
+}
+
+.hero-cta {
+  display: inline-block;
+  margin-top: 40px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  padding-bottom: 4px;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  transition: color 0.3s ease;
+}
+
+.hero-cta:hover {
+  color: var(--accent);
+}
+
+/* ---------- marquee ---------- */
+.marquee {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  padding: 18px 0;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: inline-flex;
+  gap: 48px;
+  padding-right: 48px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--mut);
+  animation: marquee 26s linear infinite;
+  will-change: transform;
+}
+
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-100%, 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+@media (max-width: 720px) {
+  .nav-links { gap: 18px; }
+  .nav-links a:nth-child(4) { display: none; }
+}

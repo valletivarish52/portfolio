@@ -1,0 +1,78 @@
+import { Suspense, lazy, useRef } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { PROFILE } from "../data/content";
+
+const ThreeScene = lazy(() => import("../three/ThreeScene"));
+
+const EASE = [0.16, 1, 0.3, 1] as const;
+
+export default function Hero({ ready }: { ready: boolean }) {
+  const reduce = useReducedMotion();
+  const heroRef = useRef<HTMLElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [0, 140]);
+  const fade = useTransform(scrollYProgress, [0, 0.9], [1, 0.15]);
+
+  const line = (text: string, delay: number, thin = false) => (
+    <span className="hero-line">
+      <motion.span
+        className={thin ? "thin" : undefined}
+        initial={reduce ? false : { y: "110%" }}
+        animate={ready ? { y: "0%" } : {}}
+        transition={{ duration: 1, delay, ease: EASE }}
+      >
+        {text}
+      </motion.span>
+    </span>
+  );
+
+  return (
+    <header className="hero" id="top" ref={heroRef}>
+      <Suspense fallback={null}>
+        <ThreeScene />
+      </Suspense>
+      <motion.div
+        className="container"
+        style={reduce ? undefined : { y, opacity: fade }}
+      >
+        <motion.p
+          className="hero-role"
+          initial={reduce ? false : { opacity: 0 }}
+          animate={ready ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.45 }}
+        >
+          {PROFILE.role} · {PROFILE.location}
+        </motion.p>
+        <h1 className="hero-name">
+          {line(PROFILE.firstName, 0.35)}
+          {line(PROFILE.lastName, 0.45, true)}
+        </h1>
+        <motion.p
+          className="hero-sub"
+          initial={reduce ? false : { opacity: 0, y: 24 }}
+          animate={ready ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, delay: 0.65, ease: EASE }}
+        >
+          {PROFILE.tagline}
+        </motion.p>
+        <motion.a
+          href="#work"
+          className="hero-cta"
+          initial={reduce ? false : { opacity: 0, y: 24 }}
+          animate={ready ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, delay: 0.78, ease: EASE }}
+        >
+          View selected work
+        </motion.a>
+      </motion.div>
+    </header>
+  );
+}
