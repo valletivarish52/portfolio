@@ -332,6 +332,29 @@ h2 {
   color: var(--accent);
 }
 
+/* ---------- shared reveals ---------- */
+.h2-mask {
+  overflow: hidden;
+}
+
+.h2-mask h2 {
+  will-change: transform;
+}
+
+.hero-glow {
+  position: absolute;
+  top: -280px;
+  left: -280px;
+  width: 560px;
+  height: 560px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(205, 230, 75, 0.07) 0%, transparent 60%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
 /* ---------- marquee ---------- */
 .marquee {
   border-top: 1px solid var(--line);

@@ -25,7 +25,17 @@ export default function Contact() {
   return (
     <section id="contact" className="contact">
       <div className="container">
-        <h2 className="contact-intro">Have a project in mind?</h2>
+        <div className="h2-mask">
+          <motion.h2
+            className="contact-intro"
+            initial={reduce ? false : { y: "110%" }}
+            whileInView={reduce ? undefined : { y: "0%" }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.8, ease: EASE }}
+          >
+            Have a project in mind?
+          </motion.h2>
+        </div>
 
         <motion.a
           href={`mailto:${PROFILE.email}`}

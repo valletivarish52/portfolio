@@ -65,19 +65,11 @@ export interface WorkItem {
 export const WORK: WorkItem[] = [
   {
     name: "MPro",
-    kind: "Insurance onboarding platform",
-    desc: "Configuration-driven onboarding for 12 products at Axis Max Life. Plan codes moved to config, 3-4 fewer DB calls per policy.",
+    kind: "Insurance onboarding platform · Axis Max Life",
+    desc: "Configuration-driven onboarding for 12 products, with OTP-secured policy retrieval that prefills 90% of a 6-stage customer journey.",
     stack: ["Spring Boot", "Coherent Spark", "AWS S3", "CloudFront", "Redis"],
     year: "2025",
-    image: "https://picsum.photos/seed/mpro-insurance-platform/1200/900",
-  },
-  {
-    name: "Policy Retrieval APIs",
-    kind: "Secure lookup service",
-    desc: "Lookup by policy number, PAN or mobile with DOB verification and Redis OTP auth. Prefills 90% of a 6-stage journey.",
-    stack: ["Spring Boot", "Redis", "MongoDB", "AWS"],
-    year: "2025",
-    image: "https://picsum.photos/seed/secure-api-service/1200/900",
+    image: "https://picsum.photos/id/180/1200/900",
   },
   {
     name: "Guardian Life Assurance",
@@ -85,7 +77,7 @@ export const WORK: WorkItem[] = [
     desc: "Role-based access control, automated policy workflows and dashboards for policy analytics and claim tracking.",
     stack: ["Spring Boot", "React", "MySQL", "Spring Security"],
     year: "2024",
-    image: "https://picsum.photos/seed/guardian-life-dashboard/1200/900",
+    image: "https://picsum.photos/id/60/1200/900",
     link: "https://github.com/valletivarish/guardian_life_assurance",
   },
 ];

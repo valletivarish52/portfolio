@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { PROFILE, RESUME_FILE } from "../data/content";
+import Magnetic from "../components/Magnetic";
 
 export default function Nav({ ready }: { ready: boolean }) {
   return (
@@ -9,9 +10,11 @@ export default function Nav({ ready }: { ready: boolean }) {
       animate={ready ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
     >
-      <a href="#top" className="nav-mark">
-        VV
-      </a>
+      <Magnetic strength={0.4}>
+        <a href="#top" className="nav-mark">
+          VV
+        </a>
+      </Magnetic>
       <div className="nav-links">
         <a href="#work">Work</a>
         <a href="#experience">Experience</a>
