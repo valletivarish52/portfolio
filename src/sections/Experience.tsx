@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ACHIEVEMENTS, EXPERIENCE } from "../data/content";
+import CountUp from "../components/CountUp";
 import "./experience.css";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -23,7 +24,9 @@ export default function Experience() {
         <div className="exp-stats">
           {ACHIEVEMENTS.map((a, i) => (
             <motion.div key={a.stat} className="exp-stat" {...reveal(i * 0.08)}>
-              <span className="exp-stat-number">{a.stat}</span>
+              <span className="exp-stat-number">
+                <CountUp value={a.stat} />
+              </span>
               <span className="exp-stat-label">{a.label}</span>
             </motion.div>
           ))}

@@ -58,7 +58,8 @@ export interface WorkItem {
   desc: string;
   stack: string[];
   year: string;
-  image: string;
+  seed: number;
+  caseStudy: { overview: string; points: string[] };
   link?: string;
 }
 
@@ -69,7 +70,18 @@ export const WORK: WorkItem[] = [
     desc: "Configuration-driven onboarding for 12 products, with OTP-secured policy retrieval that prefills 90% of a 6-stage customer journey.",
     stack: ["Spring Boot", "Coherent Spark", "AWS S3", "CloudFront", "Redis"],
     year: "2025",
-    image: "https://picsum.photos/id/180/1200/900",
+    seed: 47,
+    caseStudy: {
+      overview:
+        "MPro is Axis Max Life's policy issuance platform. I work across onboarding, policy retrieval and integrations, with end-to-end production ownership.",
+      points: [
+        "Configuration-driven onboarding for 12 insurance products, moving plan code assignment to plancode.json and eliminating 3-4 database calls per policy.",
+        "Group insurance (superannuation) workflows migrated to a configuration-driven model, enabling product setup without code changes.",
+        "Secure policy retrieval by policy number, PAN or mobile with DOB verification and Redis-based OTP auth, prefilling 90% of a 6-stage customer journey.",
+        "Benefit Illustration support in wrapper APIs for fintech and aggregator integrations.",
+        "Production support, hotfix deployments, CI/CD and monitoring across GitLab, Jenkins, Kibana and CloudWatch.",
+      ],
+    },
   },
   {
     name: "Guardian Life Assurance",
@@ -77,7 +89,17 @@ export const WORK: WorkItem[] = [
     desc: "Role-based access control, automated policy workflows and dashboards for policy analytics and claim tracking.",
     stack: ["Spring Boot", "React", "MySQL", "Spring Security"],
     year: "2024",
-    image: "https://picsum.photos/id/60/1200/900",
+    seed: 172,
+    caseStudy: {
+      overview:
+        "A full-stack insurance management system built end to end: policies, customers, claims and payments in one product.",
+      points: [
+        "Role-based access control with Spring Security and JWT.",
+        "Automated policy lifecycle workflows from proposal through claim tracking.",
+        "Dashboards for policy analytics and claim status.",
+        "Indexed MySQL queries keeping reports fast as data grows.",
+      ],
+    },
     link: "https://github.com/valletivarish/guardian_life_assurance",
   },
   {
@@ -86,7 +108,16 @@ export const WORK: WorkItem[] = [
     desc: "Product microservice for an e-commerce platform: catalog management, REST APIs and service-ready configuration.",
     stack: ["Java", "Spring Boot", "Microservices"],
     year: "2026",
-    image: "https://picsum.photos/seed/product-microservice-grid/1200/900",
+    seed: 233,
+    caseStudy: {
+      overview:
+        "The product service from an e-commerce microservices setup, owning the catalog domain behind a gateway.",
+      points: [
+        "Catalog CRUD exposed as REST APIs on Spring Boot.",
+        "Externalized configuration through a config server.",
+        "Designed to slot into a gateway-fronted service mesh alongside cart and order services.",
+      ],
+    },
     link: "https://github.com/valletivarish/buyzaar-product-ms",
   },
   {
@@ -95,7 +126,16 @@ export const WORK: WorkItem[] = [
     desc: "Working catalog of Java fundamentals and design patterns: creational, structural and behavioural implementations with practical examples.",
     stack: ["Java", "OOP", "Design Patterns"],
     year: "2025",
-    image: "https://picsum.photos/seed/java-design-patterns/1200/900",
+    seed: 318,
+    caseStudy: {
+      overview:
+        "A working reference of core Java and design patterns, written as runnable examples rather than notes.",
+      points: [
+        "Creational, structural and behavioural pattern families implemented in idiomatic Java.",
+        "Concurrency, collections and streams fundamentals alongside the patterns.",
+        "Doubles as an interview prep and code review companion.",
+      ],
+    },
     link: "https://github.com/valletivarish/java-fundamentals-and-design-patterns",
   },
   {
@@ -104,7 +144,16 @@ export const WORK: WorkItem[] = [
     desc: "React banking application covering accounts, transactions and transfers with a clean component structure.",
     stack: ["React", "JavaScript"],
     year: "2024",
-    image: "https://picsum.photos/seed/banking-app-interface/1200/900",
+    seed: 521,
+    caseStudy: {
+      overview:
+        "A React banking interface covering the daily flows of a retail account.",
+      points: [
+        "Accounts, transactions and transfer views with a reusable component structure.",
+        "Client-side validation and state handling for form-heavy flows.",
+        "REST-backed data layer kept behind a thin API module.",
+      ],
+    },
     link: "https://github.com/valletivarish/bank-application-react",
   },
 ];

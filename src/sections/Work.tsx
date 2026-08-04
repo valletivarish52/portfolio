@@ -1,27 +1,18 @@
-import { useRef } from "react";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { WORK, WorkItem } from "../data/content";
+import FlowField from "../components/FlowField";
+import WorkModal from "../components/WorkModal";
 import "./work.css";
 
 const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const EASE_CURTAIN: [number, number, number, number] = [0.87, 0, 0.13, 1];
 
-function WorkCard({ p }: { p: WorkItem }) {
+function WorkCard({ p, onOpen }: { p: WorkItem; onOpen: () => void }) {
   const reduce = useReducedMotion();
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const parallaxY = useTransform(scrollYProgress, [0, 1], ["-7%", "7%"]);
 
   return (
-    <article ref={ref} className="work-item">
+    <article className="work-item">
       <motion.div
         className="work-media"
         initial={reduce ? false : "hidden"}
@@ -30,14 +21,13 @@ function WorkCard({ p }: { p: WorkItem }) {
       >
         <motion.div
           className="work-curtain"
-          style={reduce ? undefined : { y: parallaxY, scale: 1.15 }}
           variants={{
             hidden: { clipPath: "inset(100% 0 0 0)" },
             show: { clipPath: "inset(0% 0 0 0)" },
           }}
           transition={{ duration: 0.9, ease: EASE_CURTAIN }}
         >
-          <img src={p.image} alt={p.name} loading="lazy" />
+          <FlowField seed={p.seed} label={p.name} />
         </motion.div>
       </motion.div>
 
@@ -63,6 +53,9 @@ function WorkCard({ p }: { p: WorkItem }) {
         <p className="work-kind">{p.kind}</p>
         <p className="work-desc">{p.desc}</p>
         <p className="work-stack">{p.stack.join(" / ")}</p>
+        <button className="work-case" onClick={onOpen}>
+          Case study
+        </button>
       </motion.div>
     </article>
   );
@@ -70,6 +63,7 @@ function WorkCard({ p }: { p: WorkItem }) {
 
 export default function Work() {
   const reduce = useReducedMotion();
+  const [selected, setSelected] = useState<WorkItem | null>(null);
 
   return (
     <section id="work" className="work">
@@ -87,10 +81,16 @@ export default function Work() {
 
         <div className="work-grid">
           {WORK.map((p) => (
-            <WorkCard key={p.name} p={p} />
+            <WorkCard key={p.name} p={p} onOpen={() => setSelected(p)} />
           ))}
         </div>
       </div>
+
+      <AnimatePresence>
+        {selected && (
+          <WorkModal item={selected} onClose={() => setSelected(null)} />
+        )}
+      </AnimatePresence>
     </section>
   );
 }
