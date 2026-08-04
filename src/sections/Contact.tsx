@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { PROFILE } from "../data/content";
+import { PROFILE, RESUME_FILE } from "../data/content";
 import "./contact.css";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -41,6 +41,9 @@ export default function Contact() {
               {link.label} ↗
             </a>
           ))}
+          <a href={`${import.meta.env.BASE_URL}${RESUME_FILE}`} download>
+            Résumé ↓
+          </a>
         </div>
 
         <footer className="contact-footer">

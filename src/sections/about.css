@@ -2,75 +2,30 @@
   padding-block: clamp(96px, 14vh, 180px);
 }
 
-.about h2 {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--mut);
-  margin: 0 0 clamp(40px, 6vh, 64px);
-}
-
 .about-statement {
-  font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 450;
   line-height: 1.4;
-  max-width: 40ch;
+  letter-spacing: -0.01em;
+  max-width: 46ch;
   color: var(--ink);
-  margin: 0;
 }
 
-.about-skills {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 40px 28px;
-  margin-top: clamp(72px, 10vh, 120px);
-}
-
-.about-group-name {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--ink);
-  margin: 0 0 10px;
-}
-
-.about-group-items {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.about-group-items li {
-  font-size: 13.5px;
+.about-stack {
+  margin-top: clamp(40px, 6vw, 64px);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.8;
   color: var(--mut);
-  line-height: 2;
-}
-
-.about-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 48px;
-  border-top: 1px solid var(--line);
-  padding-top: 32px;
-  margin-top: clamp(64px, 9vh, 104px);
-}
-
-.about-school {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--ink);
-  margin: 0 0 6px;
-}
-
-.about-edu-line {
-  font-size: 13.5px;
-  color: var(--mut);
-  line-height: 1.7;
-  margin: 0;
+  max-width: 60ch;
 }
 
 .about-award {
-  max-width: 44ch;
-  font-size: 13.5px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.6;
   color: var(--mut);
-  line-height: 1.7;
-  margin: 0;
+  max-width: 52ch;
 }

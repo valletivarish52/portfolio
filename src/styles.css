@@ -56,6 +56,40 @@ h2 {
   margin-bottom: clamp(48px, 7vw, 88px);
 }
 
+/* ---------- a11y ---------- */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 200;
+  padding: 10px 16px;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  transform: translateY(-64px);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.work-name a {
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.work-name a:hover {
+  color: var(--accent);
+}
+
 /* ---------- grain ---------- */
 .grain {
   position: fixed;
@@ -329,6 +363,8 @@ h2 {
 }
 
 @media (max-width: 720px) {
-  .nav-links { gap: 18px; }
-  .nav-links a:nth-child(4) { display: none; }
+  .nav-links { gap: 16px; }
+  .nav-links a:nth-child(2),
+  .nav-links a:nth-child(3),
+  .nav-links a:nth-child(5) { display: none; }
 }

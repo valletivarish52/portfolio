@@ -28,6 +28,8 @@ export const EXPERIENCE = [
     role: "Software Engineer",
     meta: "Client: Axis Max Life Insurance · Project: MPro",
     period: "Nov 2024 - Present",
+    summary:
+      "Configuration-driven onboarding for 12 insurance products, OTP-secured policy retrieval, and end-to-end production ownership on a high-volume insurance platform.",
     points: [
       "Built configuration-driven onboarding for 12 insurance products with Spring Boot, Coherent Spark and AWS S3/CloudFront, eliminating 3-4 database calls per policy.",
       "Migrated group insurance (superannuation) workflows to a configuration-driven model, enabling product setup without code changes.",
@@ -41,6 +43,8 @@ export const EXPERIENCE = [
     role: "Software Intern",
     meta: "Full-stack insurance modules",
     period: "May 2024 - Nov 2024",
+    summary:
+      "Full-stack policy, claims and payment workflows with Spring Boot, React, MySQL and Redis.",
     points: [
       "Developed policy, customer, claims and payment workflows with Spring Boot, React, MySQL and Redis.",
       "Implemented JWT authentication, Spring Security and indexed MySQL queries to speed up reporting.",
@@ -48,7 +52,17 @@ export const EXPERIENCE = [
   },
 ];
 
-export const WORK = [
+export interface WorkItem {
+  name: string;
+  kind: string;
+  desc: string;
+  stack: string[];
+  year: string;
+  image: string;
+  link?: string;
+}
+
+export const WORK: WorkItem[] = [
   {
     name: "MPro",
     kind: "Insurance onboarding platform",
@@ -72,8 +86,14 @@ export const WORK = [
     stack: ["Spring Boot", "React", "MySQL", "Spring Security"],
     year: "2024",
     image: "https://picsum.photos/seed/guardian-life-dashboard/1200/900",
+    link: "https://github.com/valletivarish/guardian_life_assurance",
   },
 ];
+
+export const STACK_LINE =
+  "Java / Spring Boot / AWS / Redis / MySQL / MongoDB / Docker / Jenkins";
+
+export const RESUME_FILE = "Varish_Valleti_Resume.pdf";
 
 export const SKILLS = [
   { group: "Languages", items: ["Java", "JavaScript", "SQL", "HTML", "CSS"] },

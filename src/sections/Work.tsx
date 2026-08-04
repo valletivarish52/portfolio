@@ -38,7 +38,15 @@ export default function Work() {
                 transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.35 }}
               >
                 <div className="work-row">
-                  <h3 className="work-name">{p.name}</h3>
+                  <h3 className="work-name">
+                    {p.link ? (
+                      <a href={p.link} target="_blank" rel="noreferrer">
+                        {p.name} ↗
+                      </a>
+                    ) : (
+                      p.name
+                    )}
+                  </h3>
                   <span className="work-year">{p.year}</span>
                 </div>
                 <p className="work-kind">{p.kind}</p>

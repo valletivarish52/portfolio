@@ -66,6 +66,9 @@ export default function App() {
 
   return (
     <>
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
       <div className="grain" />
       <AnimatePresence>
         {loading && (
@@ -83,6 +86,7 @@ export default function App() {
       <ScrollProgress />
       <Nav ready={ready} />
       <motion.main
+        id="main"
         initial={{ opacity: 0 }}
         animate={ready ? { opacity: 1 } : {}}
         transition={{ duration: 0.8, ease: "easeOut" }}

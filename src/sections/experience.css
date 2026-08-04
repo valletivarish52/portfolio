@@ -1,22 +1,12 @@
-.experience {
+.exp {
   padding-block: clamp(96px, 14vh, 180px);
 }
-
-.experience h2 {
-  font-size: clamp(2rem, 4.5vw, 3.4rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin-bottom: clamp(48px, 8vh, 96px);
-}
-
-/* Stats band */
 
 .exp-stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
-  margin-bottom: clamp(72px, 10vh, 140px);
+  gap: 40px 28px;
+  margin-bottom: clamp(72px, 10vw, 128px);
 }
 
 .exp-stat {
@@ -25,16 +15,15 @@
   gap: 10px;
 }
 
-.exp-stat-num {
+.exp-stat-number {
   font-size: clamp(2.4rem, 5vw, 4.2rem);
   font-weight: 600;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  color: var(--ink);
+  letter-spacing: -0.03em;
+  line-height: 1;
   transition: color 0.3s ease;
 }
 
-.exp-stat:hover .exp-stat-num {
+.exp-stat:hover .exp-stat-number {
   color: var(--accent);
 }
 
@@ -45,75 +34,53 @@
   max-width: 24ch;
 }
 
-/* Role rows */
-
-.exp-row {
+.exp-role {
   border-top: 1px solid var(--line);
-  padding-block: clamp(40px, 6vh, 64px);
+  padding-block: clamp(28px, 4vw, 44px);
 }
 
-.exp-head {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: start;
-  gap: 28px;
+.exp-role-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 
-.exp-company {
-  font-size: clamp(1.6rem, 3vw, 2.6rem);
+.exp-role-title {
+  font-size: clamp(1.3rem, 2.4vw, 1.9rem);
   font-weight: 600;
-  letter-spacing: -0.015em;
-  line-height: 1.15;
-  color: var(--ink);
-  margin-bottom: 8px;
+  letter-spacing: -0.02em;
 }
 
-.exp-sub {
-  font-size: 15px;
-  line-height: 1.5;
+.exp-role-company {
   color: var(--mut);
+  font-weight: 450;
 }
 
-.exp-period {
-  font-family: "JetBrains Mono", monospace;
+.exp-role-period {
+  font-family: var(--font-mono);
   font-size: 12px;
   color: var(--mut);
   white-space: nowrap;
-  padding-top: 10px;
 }
 
-.exp-points {
-  margin-top: 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.exp-points p {
-  max-width: 68ch;
-  color: #c9c9c4;
-  font-size: 15px;
+.exp-role-summary {
+  margin-top: 14px;
+  max-width: 62ch;
+  font-size: 15.5px;
   line-height: 1.65;
+  color: #c9c9c4;
 }
 
 @media (max-width: 900px) {
   .exp-stats {
     grid-template-columns: repeat(2, 1fr);
-    gap: 40px 28px;
   }
 }
 
 @media (max-width: 560px) {
   .exp-stats {
     grid-template-columns: 1fr;
-  }
-
-  .exp-head {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .exp-period {
-    padding-top: 0;
   }
 }

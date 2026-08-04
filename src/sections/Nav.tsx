@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { PROFILE } from "../data/content";
+import { PROFILE, RESUME_FILE } from "../data/content";
 
 export default function Nav({ ready }: { ready: boolean }) {
   return (
@@ -19,6 +19,13 @@ export default function Nav({ ready }: { ready: boolean }) {
         <a href="#contact">Contact</a>
         <a href={PROFILE.links.github} target="_blank" rel="noreferrer">
           GitHub ↗
+        </a>
+        <a
+          href={`${import.meta.env.BASE_URL}${RESUME_FILE}`}
+          download
+          className="nav-resume"
+        >
+          Résumé
         </a>
       </div>
     </motion.nav>

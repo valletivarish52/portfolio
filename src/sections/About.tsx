@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { SKILLS, EDUCATION, AWARD } from "../data/content";
+import { AWARD, STACK_LINE } from "../data/content";
 import "./about.css";
 
 const STATEMENT =
@@ -11,21 +11,19 @@ export default function About() {
   const reduce = useReducedMotion();
   const words = STATEMENT.split(" ");
 
-  const fadeUp = (i: number) =>
+  const fadeUp = (delay = 0) =>
     reduce
       ? {}
       : {
           initial: { opacity: 0, y: 24 },
           whileInView: { opacity: 1, y: 0 },
           viewport: { once: true, amount: 0.3 },
-          transition: { duration: 0.7, delay: i * 0.06, ease: EASE },
+          transition: { duration: 0.7, delay, ease: EASE },
         };
 
   return (
     <section id="about" className="about">
       <div className="container">
-        <h2>About</h2>
-
         {reduce ? (
           <p className="about-statement">{STATEMENT}</p>
         ) : (
@@ -45,28 +43,13 @@ export default function About() {
           </p>
         )}
 
-        <div className="about-skills">
-          {SKILLS.map((group, i) => (
-            <motion.div key={group.group} {...fadeUp(i)}>
-              <h3 className="about-group-name">{group.group}</h3>
-              <ul className="about-group-items">
-                {group.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
+        <motion.p className="about-stack" {...fadeUp(0.1)}>
+          {STACK_LINE}
+        </motion.p>
 
-        <motion.div className="about-meta" {...fadeUp(0)}>
-          <div>
-            <p className="about-school">{EDUCATION.school}</p>
-            <p className="about-edu-line">{EDUCATION.degree}</p>
-            <p className="about-edu-line">{EDUCATION.period}</p>
-            <p className="about-edu-line">{EDUCATION.note}</p>
-          </div>
-          <p className="about-award">{AWARD}</p>
-        </motion.div>
+        <motion.p className="about-award" {...fadeUp(0.2)}>
+          {AWARD}
+        </motion.p>
       </div>
     </section>
   );
