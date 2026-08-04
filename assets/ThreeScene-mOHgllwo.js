@@ -1,4 +1,4 @@
-import{r as Xs,j as Do}from"./index-DOMBASb2.js";/**
+import{r as Xs,j as Do}from"./index-B5nU5KkN.js";/**
  * @license
  * Copyright 2010-2024 Three.js Authors
  * SPDX-License-Identifier: MIT
