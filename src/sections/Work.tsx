@@ -27,7 +27,7 @@ function WorkCard({ p, onOpen }: { p: WorkItem; onOpen: () => void }) {
           }}
           transition={{ duration: 0.9, ease: EASE_CURTAIN }}
         >
-          <FlowField seed={p.seed} label={p.name} />
+          <FlowField seed={p.seed} tint={p.tint} label={p.name} />
         </motion.div>
       </motion.div>
 
@@ -42,7 +42,7 @@ function WorkCard({ p, onOpen }: { p: WorkItem; onOpen: () => void }) {
           <h3 className="work-name">
             {p.link ? (
               <a href={p.link} target="_blank" rel="noreferrer">
-                {p.name} ↗
+                {p.name} <span className="work-arrow">↗</span>
               </a>
             ) : (
               p.name

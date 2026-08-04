@@ -12,7 +12,7 @@ function mulberry32(seed: number) {
   };
 }
 
-function draw(canvas: HTMLCanvasElement, seed: number) {
+function draw(canvas: HTMLCanvasElement, seed: number, tint: string) {
   const rect = canvas.getBoundingClientRect();
   if (rect.width === 0 || rect.height === 0) return;
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -58,7 +58,7 @@ function draw(canvas: HTMLCanvasElement, seed: number) {
     }
 
     if (isAccent) {
-      ctx.strokeStyle = `rgba(205, 230, 75, ${0.3 + rand() * 0.25})`;
+      ctx.strokeStyle = `rgba(${tint}, ${0.3 + rand() * 0.25})`;
       ctx.lineWidth = 1.2;
     } else {
       ctx.strokeStyle = `rgba(242, 242, 239, ${0.05 + rand() * 0.1})`;
@@ -70,9 +70,11 @@ function draw(canvas: HTMLCanvasElement, seed: number) {
 
 export default function FlowField({
   seed,
+  tint,
   label,
 }: {
   seed: number;
+  tint: string;
   label: string;
 }) {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -80,11 +82,11 @@ export default function FlowField({
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
-    draw(canvas, seed);
-    const ro = new ResizeObserver(() => draw(canvas, seed));
+    draw(canvas, seed, tint);
+    const ro = new ResizeObserver(() => draw(canvas, seed, tint));
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [seed]);
+  }, [seed, tint]);
 
   return (
     <canvas

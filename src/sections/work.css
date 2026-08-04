@@ -48,6 +48,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.work-item:hover .work-curtain {
+  transform: scale(1.03);
+}
+
+.work-arrow {
+  display: inline-block;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.work-name a:hover .work-arrow {
+  transform: translate(3px, -3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-item:hover .work-curtain {
+    transform: none;
+  }
 }
 
 .flow-canvas {
