@@ -14,9 +14,7 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* Smooth scrolling is handled by Lenis (skipped under reduced motion). */
 
 body {
   background: var(--bg);
@@ -198,7 +196,6 @@ h2 {
 
 @media (prefers-reduced-motion: reduce) {
   .pre-glow { animation: none; }
-  html { scroll-behavior: auto; }
 }
 
 /* ---------- scroll progress ---------- */
@@ -338,20 +335,6 @@ h2 {
 }
 
 .h2-mask h2 {
-  will-change: transform;
-}
-
-.hero-glow {
-  position: absolute;
-  top: -280px;
-  left: -280px;
-  width: 560px;
-  height: 560px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(205, 230, 75, 0.07) 0%, transparent 60%);
-  filter: blur(40px);
-  pointer-events: none;
-  z-index: 0;
   will-change: transform;
 }
 

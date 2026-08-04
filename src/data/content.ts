@@ -80,6 +80,33 @@ export const WORK: WorkItem[] = [
     image: "https://picsum.photos/id/60/1200/900",
     link: "https://github.com/valletivarish/guardian_life_assurance",
   },
+  {
+    name: "Buyzaar Product MS",
+    kind: "E-commerce microservice",
+    desc: "Product microservice for an e-commerce platform: catalog management, REST APIs and service-ready configuration.",
+    stack: ["Java", "Spring Boot", "Microservices"],
+    year: "2026",
+    image: "https://picsum.photos/seed/product-microservice-grid/1200/900",
+    link: "https://github.com/valletivarish/buyzaar-product-ms",
+  },
+  {
+    name: "URL Shortener",
+    kind: "Backend utility service",
+    desc: "Flask-based URL shortener with an emphasis on usability and simplicity: short-code generation and redirect handling.",
+    stack: ["Python", "Flask"],
+    year: "2025",
+    image: "https://picsum.photos/seed/url-shortener-service/1200/900",
+    link: "https://github.com/valletivarish/url-shortener",
+  },
+  {
+    name: "Bank Application",
+    kind: "Full-stack banking app",
+    desc: "React banking application covering accounts, transactions and transfers with a clean component structure.",
+    stack: ["React", "JavaScript"],
+    year: "2024",
+    image: "https://picsum.photos/seed/banking-app-interface/1200/900",
+    link: "https://github.com/valletivarish/bank-application-react",
+  },
 ];
 
 export const STACK_LINE =

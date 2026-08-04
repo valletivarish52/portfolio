@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   AnimatePresence,
   motion,
@@ -6,6 +6,7 @@ import {
   useScroll,
   useSpring,
 } from "framer-motion";
+import Lenis from "lenis";
 import Preloader from "./preloader/Preloader";
 import Nav from "./sections/Nav";
 import Hero from "./sections/Hero";
@@ -53,7 +54,22 @@ function Marquee() {
   );
 }
 
+function useLenis() {
+  const reduce = useReducedMotion();
+
+  useEffect(() => {
+    if (reduce) return;
+    const lenis = new Lenis({
+      autoRaf: true,
+      anchors: true,
+      lerp: 0.1,
+    });
+    return () => lenis.destroy();
+  }, [reduce]);
+}
+
 export default function App() {
+  useLenis();
   const [loading, setLoading] = useState(
     () => !sessionStorage.getItem(SEEN_KEY)
   );
