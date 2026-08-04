@@ -69,14 +69,6 @@
   color: var(--mut);
 }
 
-.wm-sketch {
-  margin-top: 28px;
-  background: #0f0f0e;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 16px;
-}
-
 .wm-overview {
   margin-top: 28px;
   font-size: 15.5px;

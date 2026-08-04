@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import type { WorkItem } from "../data/content";
-import SystemSketch from "./SystemSketch";
 import "./work-modal.css";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -63,14 +62,6 @@ export default function WorkModal({
           <span className="wm-year">{item.year}</span>
         </div>
         <p className="wm-kind">{item.kind}</p>
-
-        <div className="wm-sketch">
-          <SystemSketch
-            sketch={item.sketch}
-            tint={item.tint}
-            title={item.name}
-          />
-        </div>
 
         <p className="wm-overview">{item.caseStudy.overview}</p>
 

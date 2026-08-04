@@ -52,26 +52,6 @@ export const EXPERIENCE = [
   },
 ];
 
-export interface SketchNode {
-  id: string;
-  label: string;
-  x: number;
-  y: number;
-  accent?: boolean;
-  dashed?: boolean;
-}
-
-export interface SketchEdge {
-  from: string;
-  to: string;
-  dashed?: boolean;
-}
-
-export interface SystemSketch {
-  nodes: SketchNode[];
-  edges: SketchEdge[];
-}
-
 export interface WorkItem {
   name: string;
   kind: string;
@@ -80,7 +60,6 @@ export interface WorkItem {
   year: string;
   seed: number;
   tint: string;
-  sketch: SystemSketch;
   caseStudy: { overview: string; points: string[] };
   link?: string;
 }
@@ -94,23 +73,6 @@ export const WORK: WorkItem[] = [
     year: "2025",
     seed: 47,
     tint: "205, 230, 75",
-    sketch: {
-      nodes: [
-        { id: "msales", label: "mSales", x: 75, y: 60 },
-        { id: "aggr", label: "Aggregators", x: 75, y: 180 },
-        { id: "core", label: "MPro Core", x: 200, y: 120, accent: true },
-        { id: "spark", label: "Coherent Spark", x: 322, y: 55 },
-        { id: "s3", label: "S3 + CloudFront", x: 322, y: 120 },
-        { id: "redis", label: "Redis OTP", x: 322, y: 185 },
-      ],
-      edges: [
-        { from: "msales", to: "core" },
-        { from: "aggr", to: "core" },
-        { from: "core", to: "spark" },
-        { from: "core", to: "s3" },
-        { from: "core", to: "redis" },
-      ],
-    },
     caseStudy: {
       overview:
         "MPro is Axis Max Life's policy issuance platform. I work across onboarding, policy retrieval and integrations, with end-to-end production ownership.",
@@ -131,21 +93,6 @@ export const WORK: WorkItem[] = [
     year: "2024",
     seed: 172,
     tint: "127, 180, 230",
-    sketch: {
-      nodes: [
-        { id: "client", label: "React Client", x: 75, y: 70 },
-        { id: "sec", label: "JWT Security", x: 75, y: 170 },
-        { id: "api", label: "Spring Boot API", x: 200, y: 120, accent: true },
-        { id: "db", label: "MySQL", x: 325, y: 80 },
-        { id: "dash", label: "Dashboards", x: 325, y: 160 },
-      ],
-      edges: [
-        { from: "client", to: "api" },
-        { from: "sec", to: "api" },
-        { from: "api", to: "db" },
-        { from: "api", to: "dash" },
-      ],
-    },
     caseStudy: {
       overview:
         "A full-stack insurance management system built end to end: policies, customers, claims and payments in one product.",
@@ -166,21 +113,6 @@ export const WORK: WorkItem[] = [
     year: "2026",
     seed: 233,
     tint: "230, 179, 102",
-    sketch: {
-      nodes: [
-        { id: "gw", label: "API Gateway", x: 75, y: 70 },
-        { id: "cfg", label: "Config Server", x: 75, y: 170 },
-        { id: "ms", label: "Product Service", x: 200, y: 120, accent: true },
-        { id: "db", label: "Product DB", x: 325, y: 80 },
-        { id: "other", label: "Cart / Order", x: 325, y: 160, dashed: true },
-      ],
-      edges: [
-        { from: "gw", to: "ms" },
-        { from: "cfg", to: "ms" },
-        { from: "ms", to: "db" },
-        { from: "ms", to: "other", dashed: true },
-      ],
-    },
     caseStudy: {
       overview:
         "The product service from an e-commerce microservices setup, owning the catalog domain behind a gateway.",
@@ -200,21 +132,6 @@ export const WORK: WorkItem[] = [
     year: "2025",
     seed: 318,
     tint: "179, 156, 230",
-    sketch: {
-      nodes: [
-        { id: "core", label: "Core Java", x: 70, y: 120, accent: true },
-        { id: "cre", label: "Creational", x: 200, y: 55 },
-        { id: "str", label: "Structural", x: 200, y: 120 },
-        { id: "beh", label: "Behavioural", x: 200, y: 185 },
-        { id: "ex", label: "Examples", x: 328, y: 120, dashed: true },
-      ],
-      edges: [
-        { from: "core", to: "cre" },
-        { from: "core", to: "str" },
-        { from: "core", to: "beh" },
-        { from: "str", to: "ex", dashed: true },
-      ],
-    },
     caseStudy: {
       overview:
         "A working reference of core Java and design patterns, written as runnable examples rather than notes.",
@@ -234,21 +151,6 @@ export const WORK: WorkItem[] = [
     year: "2024",
     seed: 521,
     tint: "127, 224, 195",
-    sketch: {
-      nodes: [
-        { id: "ui", label: "React App", x: 70, y: 120, accent: true },
-        { id: "acc", label: "Accounts", x: 200, y: 55 },
-        { id: "txn", label: "Transactions", x: 200, y: 120 },
-        { id: "tra", label: "Transfers", x: 200, y: 185 },
-        { id: "api", label: "REST API", x: 328, y: 120 },
-      ],
-      edges: [
-        { from: "ui", to: "acc" },
-        { from: "ui", to: "txn" },
-        { from: "ui", to: "tra" },
-        { from: "txn", to: "api" },
-      ],
-    },
     caseStudy: {
       overview:
         "A React banking interface covering the daily flows of a retail account.",
