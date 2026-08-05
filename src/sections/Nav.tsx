@@ -16,6 +16,10 @@ export default function Nav({ ready }: { ready: boolean }) {
         </a>
       </Magnetic>
       <div className="nav-links">
+        <span className="nav-status">
+          <span className="nav-status-dot" aria-hidden />
+          {PROFILE.availability}
+        </span>
         <a href="#work">Work</a>
         <a href="#experience">Experience</a>
         <a href="#about">About</a>

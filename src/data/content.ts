@@ -3,6 +3,7 @@ export const PROFILE = {
   firstName: "Varish",
   lastName: "Valleti",
   role: "Java Backend Developer",
+  availability: "Open to work",
   tagline:
     "I build high-throughput backend systems for insurance platforms. Spring Boot, AWS, and an obsession with latency.",
   location: "Hyderabad, India",

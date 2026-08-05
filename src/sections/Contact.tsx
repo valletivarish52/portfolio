@@ -25,6 +25,9 @@ export default function Contact() {
   return (
     <section id="contact" className="contact">
       <div className="container">
+        <p className="contact-status">
+          Open to full-time roles and interesting backend problems.
+        </p>
         <div className="h2-mask">
           <motion.h2
             className="contact-intro"
