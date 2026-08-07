@@ -1,4 +1,4 @@
-import { Suspense, lazy, useRef } from "react";
+import { Suspense, lazy, useRef, useState } from "react";
 import {
   motion,
   useReducedMotion,
@@ -22,8 +22,38 @@ export default function Hero({ ready }: { ready: boolean }) {
   const y = useTransform(scrollYProgress, [0, 1], [0, 140]);
   const fade = useTransform(scrollYProgress, [0, 0.9], [1, 0.15]);
 
+  // Egg: clicking the outlined surname scrambles it, then it settles back.
+  const [surname, setSurname] = useState(PROFILE.lastName);
+  const scrambling = useRef(false);
+  const scramble = () => {
+    if (reduce || scrambling.current) return;
+    scrambling.current = true;
+    const target = PROFILE.lastName.toUpperCase();
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let settled = 0;
+    const timer = window.setInterval(() => {
+      settled += 1;
+      setSurname(
+        target
+          .split("")
+          .map((c, i) =>
+            i < settled ? c : chars[Math.floor(Math.random() * chars.length)]
+          )
+          .join("")
+      );
+      if (settled >= target.length) {
+        window.clearInterval(timer);
+        setSurname(PROFILE.lastName);
+        scrambling.current = false;
+      }
+    }, 70);
+  };
+
   const line = (text: string, delay: number, thin = false) => (
-    <span className="hero-line">
+    <span
+      className="hero-line"
+      onClick={thin ? scramble : undefined}
+    >
       <motion.span
         className={thin ? "thin" : undefined}
         initial={reduce ? false : { y: "110%" }}
@@ -54,7 +84,7 @@ export default function Hero({ ready }: { ready: boolean }) {
         </motion.p>
         <h1 className="hero-name">
           {line(PROFILE.firstName, 0.35)}
-          {line(PROFILE.lastName, 0.45, true)}
+          {line(surname, 0.45, true)}
         </h1>
         <motion.p
           className="hero-sub"

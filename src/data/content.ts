@@ -84,7 +84,7 @@ export const WORK: WorkItem[] = [
       overview:
         "MPro is Axis Max Life's policy issuance platform. I work across onboarding, policy retrieval and integrations, with end-to-end production ownership.",
       problem:
-        "Product rules lived in code and the database: plan-code assignment alone cost 3-4 database calls per policy, every product launch needed a release, and worst-case policy retrieval took 15 seconds against full-collection scans.",
+        "Product rules lived in code and the database: plan-code assignment alone cost 3-4 database calls per policy, every product launch needed a release, and worst-case policy retrieval ran full-collection scans that took up to 15 seconds.",
       approach:
         "Moved plan-code assignment into configuration on S3 behind CloudFront, rebuilt onboarding config-first with Coherent Spark, migrated superannuation workflows the same way, replaced full-collection scans with nested-document indexing, parallelized external API calls, and put policy retrieval behind Redis-based OTP verification.",
       outcome:
@@ -124,7 +124,7 @@ export const WORK: WorkItem[] = [
     tint: "230, 179, 102",
     caseStudy: {
       problem:
-        "Catalog logic tangled into a monolith cannot scale or deploy independently of the rest of the shop.",
+        "Catalog logic tangled into a monolith cannot scale or deploy independently of the rest of the store.",
       approach:
         "Extracted the product domain into its own Spring Boot service: REST APIs for catalog operations, configuration externalized to a config server, designed to sit behind an API gateway.",
       outcome:

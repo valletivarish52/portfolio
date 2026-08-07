@@ -15,6 +15,7 @@ import Work from "./sections/Work";
 import About from "./sections/About";
 import Contact from "./sections/Contact";
 import CommandPalette from "./components/CommandPalette";
+import EasterEggs from "./components/EasterEggs";
 
 const SEEN_KEY = "vv-preloader-seen";
 
@@ -106,6 +107,7 @@ export default function App() {
 
       <ScrollProgress />
       <CommandPalette />
+      <EasterEggs />
       <Nav ready={ready} />
       <motion.main
         id="main"

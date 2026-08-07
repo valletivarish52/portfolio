@@ -63,6 +63,15 @@ export default function CommandPalette() {
         },
       },
       {
+        id: "stats",
+        label: "Runtime stats",
+        hint: "for nerds",
+        run: () => {
+          window.dispatchEvent(new Event("vv:stats"));
+          close();
+        },
+      },
+      {
         id: "replay-intro",
         label: "Replay intro",
         hint: "hello ×17",

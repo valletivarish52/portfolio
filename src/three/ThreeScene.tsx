@@ -48,7 +48,7 @@ export default function ThreeScene() {
     for (let i = 0; i < mainCount; i++) {
       mainPositions[i * 3] = THREE.MathUtils.randFloat(-14, 14);
       mainPositions[i * 3 + 1] = THREE.MathUtils.randFloat(-8, 8);
-      mainPositions[i * 3 + 2] = THREE.MathUtils.randFloat(-6, 0);
+      mainPositions[i * 3 + 2] = THREE.MathUtils.randFloat(-7, -2.5);
     }
     const mainGeometry = new THREE.BufferGeometry();
     mainGeometry.setAttribute(
@@ -56,7 +56,7 @@ export default function ThreeScene() {
       new THREE.BufferAttribute(mainPositions, 3)
     );
     const mainMaterial = new THREE.PointsMaterial({
-      size: 0.05,
+      size: 0.045,
       map: sprite,
       color: 0xffffff,
       transparent: true,
@@ -74,7 +74,7 @@ export default function ThreeScene() {
     for (let i = 0; i < accentCount; i++) {
       accentPositions[i * 3] = THREE.MathUtils.randFloat(-14, 14);
       accentPositions[i * 3 + 1] = THREE.MathUtils.randFloat(-8, 8);
-      accentPositions[i * 3 + 2] = THREE.MathUtils.randFloat(-6, 0);
+      accentPositions[i * 3 + 2] = THREE.MathUtils.randFloat(-7, -2.5);
     }
     const accentGeometry = new THREE.BufferGeometry();
     accentGeometry.setAttribute(
@@ -82,7 +82,7 @@ export default function ThreeScene() {
       new THREE.BufferAttribute(accentPositions, 3)
     );
     const accentMaterial = new THREE.PointsMaterial({
-      size: 0.08,
+      size: 0.07,
       map: sprite,
       color: 0xcde64b,
       transparent: true,

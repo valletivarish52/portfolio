@@ -94,7 +94,7 @@ export default function Contact() {
 
         <p className="contact-colophon">
           This site: React 18, TypeScript, Framer Motion, Three.js and Lenis.
-          Core bundle ~97 KB gzipped, WebGL code-split, reduced motion
+          Core bundle ~105 KB gzipped, WebGL code-split, reduced motion
           respected.{" "}
           <a
             href="https://github.com/valletivarish52/portfolio"
