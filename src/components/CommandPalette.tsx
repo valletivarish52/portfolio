@@ -62,6 +62,16 @@ export default function CommandPalette() {
           close();
         },
       },
+      {
+        id: "replay-intro",
+        label: "Replay intro",
+        hint: "hello ×17",
+        run: () => {
+          sessionStorage.removeItem("vv-preloader-seen");
+          window.location.hash = "";
+          window.location.reload();
+        },
+      },
       { id: "github", label: "Open GitHub", hint: "↗", run: () => { window.open(PROFILE.links.github, "_blank"); close(); } },
       { id: "linkedin", label: "Open LinkedIn", hint: "↗", run: () => { window.open(PROFILE.links.linkedin, "_blank"); close(); } },
       { id: "leetcode", label: "Open LeetCode", hint: "↗", run: () => { window.open(PROFILE.links.leetcode, "_blank"); close(); } },

@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PROFILE, RESUME_FILE } from "../data/content";
+import { GREETINGS } from "../preloader/greetings";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -13,6 +14,18 @@ const SECTIONS: [string, string][] = [
 
 export default function Nav({ ready }: { ready: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [greet, setGreet] = useState<number | null>(null);
+  const greetStep = useRef(0);
+  const greetTimer = useRef(0);
+
+  const onMarkClick = () => {
+    greetStep.current = (greetStep.current + 1) % (GREETINGS.length - 1);
+    setGreet(greetStep.current);
+    window.clearTimeout(greetTimer.current);
+    greetTimer.current = window.setTimeout(() => setGreet(null), 1800);
+  };
+
+  useEffect(() => () => window.clearTimeout(greetTimer.current), []);
 
   useEffect(() => {
     document.documentElement.style.overflow = menuOpen ? "hidden" : "";
@@ -29,7 +42,7 @@ export default function Nav({ ready }: { ready: boolean }) {
         animate={ready ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7, delay: 0.5, ease: EASE }}
       >
-        <a href="#top" className="nav-mark">
+        <a href="#top" className="nav-mark" onClick={onMarkClick}>
           VV
         </a>
         <div className="nav-links">
@@ -70,6 +83,23 @@ export default function Nav({ ready }: { ready: boolean }) {
           </button>
         </div>
       </motion.nav>
+
+      <AnimatePresence>
+        {greet !== null && (
+          <motion.p
+            key={greet}
+            className="nav-greet"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.3, ease: EASE }}
+            aria-hidden
+          >
+            {GREETINGS[greet].text}
+            <span> · {GREETINGS[greet].lang}</span>
+          </motion.p>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {menuOpen && (
