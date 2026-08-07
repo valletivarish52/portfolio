@@ -63,15 +63,35 @@ export default function WorkModal({
         </div>
         <p className="wm-kind">{item.kind}</p>
 
-        <p className="wm-overview">{item.caseStudy.overview}</p>
+        {item.caseStudy.overview && (
+          <p className="wm-overview">{item.caseStudy.overview}</p>
+        )}
 
-        <div className="wm-points">
-          {item.caseStudy.points.map((point) => (
-            <p key={point.slice(0, 24)} className="wm-point">
-              {point}
-            </p>
-          ))}
-        </div>
+        {(["problem", "approach", "outcome"] as const).map(
+          (key) =>
+            item.caseStudy[key] && (
+              <div key={key} className="wm-block">
+                <h4 className="wm-block-title">
+                  {key === "problem"
+                    ? "The problem"
+                    : key === "approach"
+                      ? "The approach"
+                      : "The outcome"}
+                </h4>
+                <p className="wm-block-body">{item.caseStudy[key]}</p>
+              </div>
+            )
+        )}
+
+        {item.caseStudy.points && (
+          <div className="wm-points">
+            {item.caseStudy.points.map((point) => (
+              <p key={point.slice(0, 24)} className="wm-point">
+                {point}
+              </p>
+            ))}
+          </div>
+        )}
 
         <p className="wm-stack">{item.stack.join(" / ")}</p>
 

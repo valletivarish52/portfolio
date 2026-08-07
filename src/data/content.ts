@@ -2,7 +2,7 @@
 export const PROFILE = {
   firstName: "Varish",
   lastName: "Valleti",
-  role: "Java Backend Developer",
+  role: "Backend Engineer, Insurance Platforms",
   availability: "Open to work",
   tagline:
     "I build high-throughput backend systems for insurance platforms. Spring Boot, AWS, and an obsession with latency.",
@@ -61,7 +61,13 @@ export interface WorkItem {
   year: string;
   seed: number;
   tint: string;
-  caseStudy: { overview: string; points: string[] };
+  caseStudy: {
+    overview?: string;
+    problem?: string;
+    approach?: string;
+    outcome?: string;
+    points?: string[];
+  };
   link?: string;
 }
 
@@ -77,12 +83,16 @@ export const WORK: WorkItem[] = [
     caseStudy: {
       overview:
         "MPro is Axis Max Life's policy issuance platform. I work across onboarding, policy retrieval and integrations, with end-to-end production ownership.",
+      problem:
+        "Product rules lived in code and the database: plan-code assignment alone cost 3-4 database calls per policy, every product launch needed a release, and worst-case policy retrieval took 15 seconds against full-collection scans.",
+      approach:
+        "Moved plan-code assignment into configuration on S3 behind CloudFront, rebuilt onboarding config-first with Coherent Spark, migrated superannuation workflows the same way, replaced full-collection scans with nested-document indexing, parallelized external API calls, and put policy retrieval behind Redis-based OTP verification.",
+      outcome:
+        "12 products onboard through configuration with no code changes, 3-4 fewer database calls per policy, worst-case retrieval latency down 80% from 15s to under 3s, and a lookup flow that prefills 90% of a 6-stage customer journey.",
       points: [
-        "Configuration-driven onboarding for 12 insurance products, moving plan code assignment to plancode.json and eliminating 3-4 database calls per policy.",
-        "Group insurance (superannuation) workflows migrated to a configuration-driven model, enabling product setup without code changes.",
-        "Secure policy retrieval by policy number, PAN or mobile with DOB verification and Redis-based OTP auth, prefilling 90% of a 6-stage customer journey.",
         "Benefit Illustration support in wrapper APIs for fintech and aggregator integrations.",
-        "Production support, hotfix deployments, CI/CD and monitoring across GitLab, Jenkins, Kibana and CloudWatch.",
+        "Production ownership end to end: hotfixes, CI/CD and monitoring across GitLab, Jenkins, Kibana and CloudWatch.",
+        "Resolved a production data mapping incident affecting 3000+ policies, restoring end-to-end data integrity.",
       ],
     },
   },
@@ -95,14 +105,12 @@ export const WORK: WorkItem[] = [
     seed: 172,
     tint: "127, 180, 230",
     caseStudy: {
-      overview:
-        "A full-stack insurance management system built end to end: policies, customers, claims and payments in one product.",
-      points: [
-        "Role-based access control with Spring Security and JWT.",
-        "Automated policy lifecycle workflows from proposal through claim tracking.",
-        "Dashboards for policy analytics and claim status.",
-        "Indexed MySQL queries keeping reports fast as data grows.",
-      ],
+      problem:
+        "Insurance operations usually span disconnected tools: one system for policies, another for claims, spreadsheets for reporting, and no consistent access control across them.",
+      approach:
+        "Built one full-stack system on Spring Boot, React and MySQL: role-based access with Spring Security and JWT, automated policy lifecycle workflows from proposal onward, and indexed queries backing the reporting layer.",
+      outcome:
+        "A working end-to-end product covering policies, customers, claims and payments, with analytics dashboards and reports that stay fast as data grows.",
     },
     link: "https://github.com/valletivarish/guardian_life_assurance",
   },
@@ -115,13 +123,12 @@ export const WORK: WorkItem[] = [
     seed: 233,
     tint: "230, 179, 102",
     caseStudy: {
-      overview:
-        "The product service from an e-commerce microservices setup, owning the catalog domain behind a gateway.",
-      points: [
-        "Catalog CRUD exposed as REST APIs on Spring Boot.",
-        "Externalized configuration through a config server.",
-        "Designed to slot into a gateway-fronted service mesh alongside cart and order services.",
-      ],
+      problem:
+        "Catalog logic tangled into a monolith cannot scale or deploy independently of the rest of the shop.",
+      approach:
+        "Extracted the product domain into its own Spring Boot service: REST APIs for catalog operations, configuration externalized to a config server, designed to sit behind an API gateway.",
+      outcome:
+        "An independently deployable catalog service that slots into a gateway-fronted setup alongside cart and order services.",
     },
     link: "https://github.com/valletivarish/buyzaar-product-ms",
   },

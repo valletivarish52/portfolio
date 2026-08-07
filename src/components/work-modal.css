@@ -77,6 +77,24 @@
   max-width: 62ch;
 }
 
+.wm-block {
+  margin-top: 24px;
+}
+
+.wm-block-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.wm-block-body {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #c9c9c4;
+  max-width: 62ch;
+}
+
 .wm-points {
   margin-top: 18px;
   display: flex;
