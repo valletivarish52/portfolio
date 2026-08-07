@@ -115,6 +115,55 @@ export default function EasterEggs() {
     showToast("Good instinct. The email is right there.");
   });
 
+  useTypedTrigger("sudo", () => {
+    showToast("Permission granted. You were always root here.");
+  });
+
+  // Konami: the starfield warps lime for a few seconds.
+  useEffect(() => {
+    const SEQ = [
+      "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
+      "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a",
+    ];
+    let pos = 0;
+    const onKey = (e: KeyboardEvent) => {
+      const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+      pos = key === SEQ[pos] ? pos + 1 : key === SEQ[0] ? 1 : 0;
+      if (pos === SEQ.length) {
+        pos = 0;
+        window.dispatchEvent(new Event("vv:party"));
+        showToast("Warp drive engaged.");
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  // Tab-away title swap.
+  useEffect(() => {
+    const original = document.title;
+    const onVis = () => {
+      document.title = document.hidden
+        ? "Come back, the latency misses you"
+        : original;
+    };
+    document.addEventListener("visibilitychange", onVis);
+    return () => {
+      document.removeEventListener("visibilitychange", onVis);
+      document.title = original;
+    };
+  }, []);
+
+  // One patient-visitor toast per session.
+  useEffect(() => {
+    if (sessionStorage.getItem("vv-patient")) return;
+    const t = window.setTimeout(() => {
+      sessionStorage.setItem("vv-patient", "1");
+      showToast("Five minutes deep. The résumé is shorter, I promise.");
+    }, 5 * 60 * 1000);
+    return () => window.clearTimeout(t);
+  }, []);
+
   useEffect(() => {
     const onStats = () => setStats((s) => !s);
     window.addEventListener("vv:stats", onStats);

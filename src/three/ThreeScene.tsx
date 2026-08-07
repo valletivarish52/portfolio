@@ -98,6 +98,21 @@ export default function ThreeScene() {
     const clock = new THREE.Clock();
     const mouse = { x: 0, y: 0 };
 
+    // Konami party mode: lime warp for a few seconds.
+    let partyUntil = 0;
+    let partyTimer = 0;
+    const onParty = () => {
+      partyUntil = performance.now() + 6000;
+      mainMaterial.color.set(0xcde64b);
+      mainMaterial.opacity = 0.75;
+      window.clearTimeout(partyTimer);
+      partyTimer = window.setTimeout(() => {
+        mainMaterial.color.set(0xffffff);
+        mainMaterial.opacity = 0.5;
+      }, 6000);
+    };
+    window.addEventListener("vv:party", onParty);
+
     const onPointerMove = (event: PointerEvent) => {
       mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
       mouse.y = (event.clientY / window.innerHeight) * 2 - 1;
@@ -123,8 +138,9 @@ export default function ThreeScene() {
       window.addEventListener("pointermove", onPointerMove);
       renderer.setAnimationLoop(() => {
         const t = clock.getElapsedTime();
+        const party = performance.now() < partyUntil;
 
-        group.rotation.y += 0.0004;
+        group.rotation.y += party ? 0.006 : 0.0004;
         group.rotation.x = Math.sin(t * 0.1) * 0.03;
         group.position.y = Math.sin(t * 0.15) * 0.2;
 
@@ -139,6 +155,8 @@ export default function ThreeScene() {
       renderer.setAnimationLoop(null);
       window.removeEventListener("resize", onResize);
       window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("vv:party", onParty);
+      window.clearTimeout(partyTimer);
       mainGeometry.dispose();
       mainMaterial.dispose();
       accentGeometry.dispose();
