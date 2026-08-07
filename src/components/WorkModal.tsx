@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import type { WorkItem } from "../data/content";
+import { lockScroll, unlockScroll } from "../lib/scrollLock";
 import "./work-modal.css";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -29,20 +30,25 @@ export default function WorkModal({
         if (focusables.length === 0) return;
         const first = focusables[0];
         const last = focusables[focusables.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
+        const active = document.activeElement;
+        if (!panel.contains(active)) {
+          // Focus escaped (e.g. click on panel text): pull it back in.
+          e.preventDefault();
+          first.focus();
+        } else if (e.shiftKey && active === first) {
           e.preventDefault();
           last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
+        } else if (!e.shiftKey && active === last) {
           e.preventDefault();
           first.focus();
         }
       }
     };
     window.addEventListener("keydown", onKey);
-    document.documentElement.style.overflow = "hidden";
+    lockScroll();
     return () => {
       window.removeEventListener("keydown", onKey);
-      document.documentElement.style.overflow = "";
+      unlockScroll();
       prevFocus?.focus?.();
     };
   }, [onClose]);

@@ -81,12 +81,16 @@ export default function About() {
               src={`${BASE}images/award-ceremony.jpg`}
               alt="Varish receiving the Excellence Award on stage at Axis Max Life"
               loading="lazy"
+              width="1600"
+              height="1200"
               {...fadeUp(0.1)}
             />
             <motion.img
               src={`${BASE}images/award-trophy.jpg`}
               alt="Excellence Award trophy presented to Valleti Varish"
               loading="lazy"
+              width="900"
+              height="1599"
               {...fadeUp(0.2)}
             />
           </div>

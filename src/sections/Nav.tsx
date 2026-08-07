@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PROFILE, RESUME_FILE } from "../data/content";
 import { GREETINGS } from "../preloader/greetings";
+import { lockScroll, unlockScroll } from "../lib/scrollLock";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -28,9 +29,18 @@ export default function Nav({ ready }: { ready: boolean }) {
   useEffect(() => () => window.clearTimeout(greetTimer.current), []);
 
   useEffect(() => {
-    document.documentElement.style.overflow = menuOpen ? "hidden" : "";
+    if (!menuOpen) return;
+    lockScroll();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    const firstLink = document.querySelector<HTMLElement>(".mnav-links a");
+    firstLink?.focus();
     return () => {
-      document.documentElement.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+      unlockScroll();
+      document.querySelector<HTMLElement>(".nav-burger")?.focus();
     };
   }, [menuOpen]);
 
@@ -105,6 +115,7 @@ export default function Nav({ ready }: { ready: boolean }) {
         {menuOpen && (
           <motion.div
             className="mnav"
+            data-lenis-prevent
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

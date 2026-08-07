@@ -90,7 +90,10 @@ export default function Preloader({ onComplete }: PreloaderProps) {
   const current = GREETINGS[index];
 
   return (
-    <div className="preloader" aria-label="Loading" role="status">
+    <div className="preloader">
+      <span className="sr-only" role="status">
+        Loading
+      </span>
       <div className="pre-glow a" />
       <div className="pre-glow b" />
 

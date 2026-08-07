@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import {
   AnimatePresence,
+  MotionConfig,
   motion,
   useReducedMotion,
   useScroll,
@@ -41,17 +42,17 @@ function ScrollProgress() {
 }
 
 function Marquee() {
-  const row = (
-    <div className="marquee-track" aria-hidden>
+  const row = (i: number) => (
+    <div className="marquee-track" aria-hidden key={i}>
       {MARQUEE_ITEMS.map((s) => (
         <span key={s}>{s}</span>
       ))}
     </div>
   );
   return (
-    <div className="marquee" aria-label={`Stack: ${MARQUEE_ITEMS.join(", ")}`}>
-      {row}
-      {row}
+    <div className="marquee">
+      <span className="sr-only">Stack: {MARQUEE_ITEMS.join(", ")}</span>
+      {[0, 1, 2, 3].map(row)}
     </div>
   );
 }
@@ -87,10 +88,11 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <a className="skip-link" href="#main">
         Skip to content
       </a>
+      <div className="nav-scrim" aria-hidden />
       <div className="grain" />
       <AnimatePresence>
         {loading && (
@@ -106,8 +108,8 @@ export default function App() {
       </AnimatePresence>
 
       <ScrollProgress />
-      <CommandPalette />
-      <EasterEggs />
+      <CommandPalette ready={ready} />
+      <EasterEggs ready={ready} />
       <Nav ready={ready} />
       <motion.main
         id="main"
@@ -122,6 +124,6 @@ export default function App() {
         <About />
         <Contact />
       </motion.main>
-    </>
+    </MotionConfig>
   );
 }

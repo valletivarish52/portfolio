@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PROFILE, RESUME_FILE } from "../data/content";
+import { lockScroll, unlockScroll } from "../lib/scrollLock";
 import "./command-palette.css";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -20,12 +21,13 @@ function scrollToSection(hash: string) {
   else el.scrollIntoView({ behavior: "smooth" });
 }
 
-export default function CommandPalette() {
+export default function CommandPalette({ ready }: { ready: boolean }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [index, setIndex] = useState(0);
   const [copied, setCopied] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const prevFocus = useRef<HTMLElement | null>(null);
 
   const close = useCallback(() => {
     setOpen(false);
@@ -45,9 +47,13 @@ export default function CommandPalette() {
         label: copied ? "Copied ✓" : "Copy email address",
         hint: PROFILE.email,
         run: async () => {
-          await navigator.clipboard.writeText(PROFILE.email);
-          setCopied(true);
-          window.setTimeout(close, 700);
+          try {
+            await navigator.clipboard.writeText(PROFILE.email);
+            setCopied(true);
+            window.setTimeout(close, 700);
+          } catch {
+            close();
+          }
         },
       },
       {
@@ -94,7 +100,9 @@ export default function CommandPalette() {
     return actions.filter((a) => a.label.toLowerCase().includes(q) || a.hint.toLowerCase().includes(q));
   }, [actions, query]);
 
+  // Global open/toggle listeners, inert until the preloader is done.
   useEffect(() => {
+    if (!ready) return;
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
@@ -108,35 +116,52 @@ export default function CommandPalette() {
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("vv:palette", onOpen);
     };
-  }, []);
+  }, [ready]);
 
+  // Scroll lock + focus capture: runs once per open, never on keystrokes.
   useEffect(() => {
     if (!open) return;
-    const prevFocus = document.activeElement as HTMLElement | null;
+    prevFocus.current = document.activeElement as HTMLElement | null;
     inputRef.current?.focus();
-    document.documentElement.style.overflow = "hidden";
+    lockScroll();
+    return () => {
+      unlockScroll();
+      prevFocus.current?.focus?.();
+    };
+  }, [open]);
+
+  // Key handling. Capture phase + stopImmediatePropagation so the palette,
+  // as the topmost layer, owns Escape even when a modal is open beneath it.
+  useEffect(() => {
+    if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
+      if (e.key === "Escape") {
+        e.stopImmediatePropagation();
+        close();
+      }
       if (e.key === "ArrowDown") { e.preventDefault(); setIndex((i) => Math.min(i + 1, filtered.length - 1)); }
       if (e.key === "ArrowUp") { e.preventDefault(); setIndex((i) => Math.max(i - 1, 0)); }
       if (e.key === "Enter") { filtered[index]?.run(); }
       if (e.key === "Tab") {
-        // Keep focus inside the palette.
         e.preventDefault();
         inputRef.current?.focus();
       }
     };
-    window.addEventListener("keydown", onKey);
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.documentElement.style.overflow = "";
-      prevFocus?.focus?.();
-    };
+    window.addEventListener("keydown", onKey, { capture: true });
+    return () => window.removeEventListener("keydown", onKey, { capture: true });
   }, [open, filtered, index, close]);
 
   useEffect(() => {
     setIndex(0);
   }, [query]);
+
+  // Keep the active option visible in the scrollable list.
+  useEffect(() => {
+    if (!open) return;
+    document
+      .getElementById(`cp-opt-${index}`)
+      ?.scrollIntoView({ block: "nearest" });
+  }, [open, index]);
 
   return (
     <AnimatePresence>
@@ -164,11 +189,16 @@ export default function CommandPalette() {
               ref={inputRef}
               className="cp-input"
               placeholder="Type a command or search"
+              role="combobox"
+              aria-expanded="true"
+              aria-controls="cp-listbox"
+              aria-activedescendant={filtered.length > 0 ? `cp-opt-${index}` : undefined}
               aria-label="Search commands"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
             <div
+              id="cp-listbox"
               className="cp-list"
               role="listbox"
               aria-label="Commands"
@@ -178,9 +208,11 @@ export default function CommandPalette() {
               {filtered.map((a, i) => (
                 <button
                   key={a.id}
+                  id={`cp-opt-${i}`}
                   role="option"
                   aria-selected={i === index}
                   className={`cp-item${i === index ? " active" : ""}`}
+                  tabIndex={-1}
                   onMouseEnter={() => setIndex(i)}
                   onClick={() => a.run()}
                 >

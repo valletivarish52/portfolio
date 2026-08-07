@@ -21,6 +21,7 @@ export default function Experience() {
   return (
     <section id="experience" className="exp">
       <div className="container">
+        <h2 className="sr-only">Experience</h2>
         <div className="exp-stats">
           {ACHIEVEMENTS.map((a, i) => (
             <motion.div key={a.stat} className="exp-stat" {...reveal(i * 0.08)}>

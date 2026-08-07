@@ -82,7 +82,7 @@ export default function FlowField({
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
-    draw(canvas, seed, tint);
+    // ResizeObserver fires once on observe(), which handles the initial draw.
     const ro = new ResizeObserver(() => draw(canvas, seed, tint));
     ro.observe(canvas);
     return () => ro.disconnect();

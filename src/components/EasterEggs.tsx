@@ -99,10 +99,12 @@ function StatsPanel({ onClose }: { onClose: () => void }) {
   );
 }
 
-export default function EasterEggs() {
+export default function EasterEggs({ ready }: { ready: boolean }) {
   const [toast, setToast] = useState<string | null>(null);
   const [stats, setStats] = useState(false);
   const toastTimer = useRef(0);
+  const readyRef = useRef(ready);
+  readyRef.current = ready;
 
   const showToast = (msg: string) => {
     setToast(msg);
@@ -111,6 +113,7 @@ export default function EasterEggs() {
   };
 
   useTypedTrigger("hire", () => {
+    if (!readyRef.current) return;
     const el = document.getElementById("contact");
     const lenis = (window as unknown as { __lenis?: { scrollTo: (t: Element) => void } }).__lenis;
     if (el && lenis) lenis.scrollTo(el);
@@ -119,21 +122,24 @@ export default function EasterEggs() {
   });
 
   useTypedTrigger("sudo", () => {
+    if (!readyRef.current) return;
     showToast("Permission granted. You were always root here.");
   });
 
-  // Konami: the starfield warps lime for a few seconds.
+  // Konami: the starfield warps lime for a few seconds. Rolling-buffer match
+  // so repeated prefixes (Up Up Up Down...) still trigger correctly.
   useEffect(() => {
     const SEQ = [
       "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
       "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a",
-    ];
-    let pos = 0;
+    ].join(",");
+    let buffer: string[] = [];
     const onKey = (e: KeyboardEvent) => {
+      if (!readyRef.current) return;
       const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
-      pos = key === SEQ[pos] ? pos + 1 : key === SEQ[0] ? 1 : 0;
-      if (pos === SEQ.length) {
-        pos = 0;
+      buffer = [...buffer, key].slice(-10);
+      if (buffer.join(",") === SEQ) {
+        buffer = [];
         window.dispatchEvent(new Event("vv:party"));
         showToast("Warp drive engaged.");
       }

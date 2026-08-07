@@ -118,15 +118,19 @@ export default function ThreeScene() {
       mouse.y = (event.clientY / window.innerHeight) * 2 - 1;
     };
 
+    let resizeRaf = 0;
     const onResize = () => {
-      const w = container.clientWidth || window.innerWidth;
-      const h = container.clientHeight || window.innerHeight;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
-      if (prefersReduced) {
-        renderer.render(scene, camera);
-      }
+      cancelAnimationFrame(resizeRaf);
+      resizeRaf = requestAnimationFrame(() => {
+        const w = container.clientWidth || window.innerWidth;
+        const h = container.clientHeight || window.innerHeight;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+        if (prefersReduced) {
+          renderer.render(scene, camera);
+        }
+      });
     };
 
     window.addEventListener("resize", onResize);
@@ -162,6 +166,7 @@ export default function ThreeScene() {
     return () => {
       renderer.setAnimationLoop(null);
       observer?.disconnect();
+      cancelAnimationFrame(resizeRaf);
       window.removeEventListener("resize", onResize);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("vv:party", onParty);
