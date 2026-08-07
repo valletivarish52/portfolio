@@ -14,6 +14,7 @@ import Experience from "./sections/Experience";
 import Work from "./sections/Work";
 import About from "./sections/About";
 import Contact from "./sections/Contact";
+import CommandPalette from "./components/CommandPalette";
 
 const SEEN_KEY = "vv-preloader-seen";
 
@@ -64,7 +65,11 @@ function useLenis() {
       anchors: true,
       lerp: 0.1,
     });
-    return () => lenis.destroy();
+    (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
+    return () => {
+      (window as unknown as { __lenis?: Lenis }).__lenis = undefined;
+      lenis.destroy();
+    };
   }, [reduce]);
 }
 
@@ -100,6 +105,7 @@ export default function App() {
       </AnimatePresence>
 
       <ScrollProgress />
+      <CommandPalette />
       <Nav ready={ready} />
       <motion.main
         id="main"

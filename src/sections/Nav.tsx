@@ -34,6 +34,14 @@ export default function Nav({ ready }: { ready: boolean }) {
         >
           Résumé
         </a>
+        <button
+          className="nav-palette"
+          title="Command palette"
+          aria-label="Open command palette"
+          onClick={() => window.dispatchEvent(new Event("vv:palette"))}
+        >
+          ⌘K
+        </button>
       </div>
     </motion.nav>
   );
