@@ -55,15 +55,16 @@ export default function ThreeScene() {
       "position",
       new THREE.BufferAttribute(mainPositions, 3)
     );
+    // Fixed pixel size (no attenuation): particles can never render large.
     const mainMaterial = new THREE.PointsMaterial({
-      size: 0.045,
+      size: 2,
       map: sprite,
       color: 0xffffff,
       transparent: true,
       opacity: 0.5,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
-      sizeAttenuation: true,
+      sizeAttenuation: false,
     });
     const mainPoints = new THREE.Points(mainGeometry, mainMaterial);
     group.add(mainPoints);
@@ -82,14 +83,14 @@ export default function ThreeScene() {
       new THREE.BufferAttribute(accentPositions, 3)
     );
     const accentMaterial = new THREE.PointsMaterial({
-      size: 0.07,
+      size: 3,
       map: sprite,
       color: 0xcde64b,
       transparent: true,
       opacity: 0.35,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
-      sizeAttenuation: true,
+      sizeAttenuation: false,
     });
     const accentPoints = new THREE.Points(accentGeometry, accentMaterial);
     group.add(accentPoints);
