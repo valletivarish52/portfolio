@@ -112,6 +112,7 @@ export default function CommandPalette() {
 
   useEffect(() => {
     if (!open) return;
+    const prevFocus = document.activeElement as HTMLElement | null;
     inputRef.current?.focus();
     document.documentElement.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
@@ -119,11 +120,17 @@ export default function CommandPalette() {
       if (e.key === "ArrowDown") { e.preventDefault(); setIndex((i) => Math.min(i + 1, filtered.length - 1)); }
       if (e.key === "ArrowUp") { e.preventDefault(); setIndex((i) => Math.max(i - 1, 0)); }
       if (e.key === "Enter") { filtered[index]?.run(); }
+      if (e.key === "Tab") {
+        // Keep focus inside the palette.
+        e.preventDefault();
+        inputRef.current?.focus();
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => {
       window.removeEventListener("keydown", onKey);
       document.documentElement.style.overflow = "";
+      prevFocus?.focus?.();
     };
   }, [open, filtered, index, close]);
 
@@ -161,7 +168,12 @@ export default function CommandPalette() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
-            <div className="cp-list" role="listbox" aria-label="Commands">
+            <div
+              className="cp-list"
+              role="listbox"
+              aria-label="Commands"
+              data-lenis-prevent
+            >
               {filtered.length === 0 && <p className="cp-empty">No matches.</p>}
               {filtered.map((a, i) => (
                 <button

@@ -111,7 +111,10 @@ export default function EasterEggs() {
   };
 
   useTypedTrigger("hire", () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+    const el = document.getElementById("contact");
+    const lenis = (window as unknown as { __lenis?: { scrollTo: (t: Element) => void } }).__lenis;
+    if (el && lenis) lenis.scrollTo(el);
+    else el?.scrollIntoView({ behavior: "smooth" });
     showToast("Good instinct. The email is right there.");
   });
 

@@ -15,15 +15,35 @@ export default function WorkModal({
   const closeRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
+    const prevFocus = document.activeElement as HTMLElement | null;
     closeRef.current?.focus();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
+      if (e.key === "Tab") {
+        // Cycle focus within the dialog.
+        const panel = closeRef.current?.closest(".wm-panel");
+        if (!panel) return;
+        const focusables = panel.querySelectorAll<HTMLElement>(
+          "a[href], button:not([disabled])"
+        );
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     window.addEventListener("keydown", onKey);
     document.documentElement.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", onKey);
       document.documentElement.style.overflow = "";
+      prevFocus?.focus?.();
     };
   }, [onClose]);
 

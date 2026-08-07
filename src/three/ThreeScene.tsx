@@ -131,12 +131,15 @@ export default function ThreeScene() {
 
     window.addEventListener("resize", onResize);
 
+    // Pause rendering entirely while the hero is scrolled out of view.
+    let observer: IntersectionObserver | null = null;
+
     if (prefersReduced) {
       // Static single frame: no loop, no parallax.
       renderer.render(scene, camera);
     } else {
       window.addEventListener("pointermove", onPointerMove);
-      renderer.setAnimationLoop(() => {
+      const loop = () => {
         const t = clock.getElapsedTime();
         const party = performance.now() < partyUntil;
 
@@ -148,11 +151,17 @@ export default function ThreeScene() {
         camera.position.y += (-mouse.y * 0.4 - camera.position.y) * 0.04;
 
         renderer.render(scene, camera);
+      };
+      renderer.setAnimationLoop(loop);
+      observer = new IntersectionObserver(([entry]) => {
+        renderer.setAnimationLoop(entry.isIntersecting ? loop : null);
       });
+      observer.observe(container);
     }
 
     return () => {
       renderer.setAnimationLoop(null);
+      observer?.disconnect();
       window.removeEventListener("resize", onResize);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("vv:party", onParty);
