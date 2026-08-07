@@ -5,14 +5,28 @@ import "./contact.css";
 
 function CopyEmail() {
   const [copied, setCopied] = useState(false);
+
+  const copy = async () => {
+    if (copied) return;
+    try {
+      await navigator.clipboard.writeText(PROFILE.email);
+    } catch {
+      const ta = document.createElement("textarea");
+      ta.value = PROFILE.email;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+    }
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <button
-      className="contact-copy"
-      onClick={async () => {
-        await navigator.clipboard.writeText(PROFILE.email);
-        setCopied(true);
-        window.setTimeout(() => setCopied(false), 2000);
-      }}
+      className={`contact-copy${copied ? " copied" : ""}`}
+      onClick={copy}
+      aria-live="polite"
     >
       {copied ? "Copied ✓" : "Copy email"}
     </button>

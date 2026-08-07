@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { WORK, WorkItem } from "../data/content";
 import FlowField from "../components/FlowField";
@@ -61,9 +61,41 @@ function WorkCard({ p, onOpen }: { p: WorkItem; onOpen: () => void }) {
   );
 }
 
+const slugOf = (n: string) =>
+  n.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
 export default function Work() {
   const reduce = useReducedMotion();
   const [selected, setSelected] = useState<WorkItem | null>(null);
+
+  // Case studies are deep-linkable: #work/<slug>. Back button closes.
+  useEffect(() => {
+    let first = true;
+    const syncFromHash = () => {
+      const m = window.location.hash.match(/^#work\/(.+)$/);
+      const item = m ? WORK.find((w) => slugOf(w.name) === m[1]) : undefined;
+      setSelected(item ?? null);
+      if (item && first) {
+        document.getElementById("work")?.scrollIntoView();
+      }
+      first = false;
+    };
+    syncFromHash();
+    window.addEventListener("popstate", syncFromHash);
+    return () => window.removeEventListener("popstate", syncFromHash);
+  }, []);
+
+  const openItem = (p: WorkItem) => {
+    setSelected(p);
+    history.pushState(null, "", `#work/${slugOf(p.name)}`);
+  };
+
+  const closeItem = () => {
+    setSelected(null);
+    if (window.location.hash.startsWith("#work/")) {
+      history.pushState(null, "", "#work");
+    }
+  };
 
   return (
     <section id="work" className="work">
@@ -81,15 +113,13 @@ export default function Work() {
 
         <div className="work-grid">
           {WORK.map((p) => (
-            <WorkCard key={p.name} p={p} onOpen={() => setSelected(p)} />
+            <WorkCard key={p.name} p={p} onOpen={() => openItem(p)} />
           ))}
         </div>
       </div>
 
       <AnimatePresence>
-        {selected && (
-          <WorkModal item={selected} onClose={() => setSelected(null)} />
-        )}
+        {selected && <WorkModal item={selected} onClose={closeItem} />}
       </AnimatePresence>
     </section>
   );

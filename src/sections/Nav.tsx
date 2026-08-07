@@ -1,48 +1,122 @@
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { PROFILE, RESUME_FILE } from "../data/content";
-import Magnetic from "../components/Magnetic";
+
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+const SECTIONS: [string, string][] = [
+  ["#work", "Work"],
+  ["#experience", "Experience"],
+  ["#about", "About"],
+  ["#contact", "Contact"],
+];
 
 export default function Nav({ ready }: { ready: boolean }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.documentElement.style.overflow = "";
+    };
+  }, [menuOpen]);
+
   return (
-    <motion.nav
-      className="nav"
-      initial={{ opacity: 0, y: -12 }}
-      animate={ready ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-    >
-      <Magnetic strength={0.4}>
+    <>
+      <motion.nav
+        className="nav"
+        initial={{ opacity: 0, y: -12 }}
+        animate={ready ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, delay: 0.5, ease: EASE }}
+      >
         <a href="#top" className="nav-mark">
           VV
         </a>
-      </Magnetic>
-      <div className="nav-links">
-        <span className="nav-status">
-          <span className="nav-status-dot" aria-hidden />
-          {PROFILE.availability}
-        </span>
-        <a href="#work">Work</a>
-        <a href="#experience">Experience</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href={PROFILE.links.github} target="_blank" rel="noreferrer">
-          GitHub ↗
-        </a>
-        <a
-          href={`${import.meta.env.BASE_URL}${RESUME_FILE}`}
-          download
-          className="nav-resume"
-        >
-          Résumé
-        </a>
-        <button
-          className="nav-palette"
-          title="Command palette"
-          aria-label="Open command palette"
-          onClick={() => window.dispatchEvent(new Event("vv:palette"))}
-        >
-          ⌘K
-        </button>
-      </div>
-    </motion.nav>
+        <div className="nav-links">
+          <span className="nav-status">
+            <span className="nav-status-dot" aria-hidden />
+            {PROFILE.availability}
+          </span>
+          {SECTIONS.map(([href, label]) => (
+            <a key={href} href={href}>
+              {label}
+            </a>
+          ))}
+          <a href={PROFILE.links.github} target="_blank" rel="noreferrer">
+            GitHub ↗
+          </a>
+          <a
+            href={`${import.meta.env.BASE_URL}${RESUME_FILE}`}
+            download
+            className="nav-resume"
+          >
+            Résumé
+          </a>
+          <button
+            className="nav-palette"
+            title="Command palette"
+            aria-label="Open command palette"
+            onClick={() => window.dispatchEvent(new Event("vv:palette"))}
+          >
+            ⌘K
+          </button>
+          <button
+            className="nav-burger"
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            onClick={() => setMenuOpen((o) => !o)}
+          >
+            {menuOpen ? "Close" : "Menu"}
+          </button>
+        </div>
+      </motion.nav>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="mnav"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="mnav-links">
+              {SECTIONS.map(([href, label], i) => (
+                <motion.a
+                  key={href}
+                  href={href}
+                  onClick={() => setMenuOpen(false)}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.08 + i * 0.06, ease: EASE }}
+                >
+                  {label}
+                </motion.a>
+              ))}
+            </div>
+            <motion.div
+              className="mnav-meta"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <a href={PROFILE.links.github} target="_blank" rel="noreferrer">
+                GitHub ↗
+              </a>
+              <a href={PROFILE.links.linkedin} target="_blank" rel="noreferrer">
+                LinkedIn ↗
+              </a>
+              <a
+                href={`${import.meta.env.BASE_URL}${RESUME_FILE}`}
+                download
+                onClick={() => setMenuOpen(false)}
+              >
+                Résumé ↓
+              </a>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

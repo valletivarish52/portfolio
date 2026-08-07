@@ -80,6 +80,12 @@
   transition: filter 0.6s ease;
 }
 
+.about-award-media img:last-child {
+  object-fit: contain;
+  background: #0f0f0e;
+  max-height: 480px;
+}
+
 .about-award-media img:hover {
   filter: grayscale(0%);
 }

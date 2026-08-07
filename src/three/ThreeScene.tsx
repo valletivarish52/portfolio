@@ -30,13 +30,25 @@ export default function ThreeScene() {
     const group = new THREE.Group();
     scene.add(group);
 
+    // Soft circular sprite so points render as round glows, not squares.
+    const spriteCanvas = document.createElement("canvas");
+    spriteCanvas.width = spriteCanvas.height = 64;
+    const sctx = spriteCanvas.getContext("2d")!;
+    const grad = sctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    grad.addColorStop(0, "rgba(255,255,255,1)");
+    grad.addColorStop(0.4, "rgba(255,255,255,0.55)");
+    grad.addColorStop(1, "rgba(255,255,255,0)");
+    sctx.fillStyle = grad;
+    sctx.fillRect(0, 0, 64, 64);
+    const sprite = new THREE.CanvasTexture(spriteCanvas);
+
     // Main particle field: wide shallow box.
     const mainCount = 1600;
     const mainPositions = new Float32Array(mainCount * 3);
     for (let i = 0; i < mainCount; i++) {
       mainPositions[i * 3] = THREE.MathUtils.randFloat(-14, 14);
       mainPositions[i * 3 + 1] = THREE.MathUtils.randFloat(-8, 8);
-      mainPositions[i * 3 + 2] = THREE.MathUtils.randFloat(-6, 2);
+      mainPositions[i * 3 + 2] = THREE.MathUtils.randFloat(-6, 0);
     }
     const mainGeometry = new THREE.BufferGeometry();
     mainGeometry.setAttribute(
@@ -44,10 +56,11 @@ export default function ThreeScene() {
       new THREE.BufferAttribute(mainPositions, 3)
     );
     const mainMaterial = new THREE.PointsMaterial({
-      size: 0.035,
+      size: 0.05,
+      map: sprite,
       color: 0xffffff,
       transparent: true,
-      opacity: 0.55,
+      opacity: 0.5,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
       sizeAttenuation: true,
@@ -61,7 +74,7 @@ export default function ThreeScene() {
     for (let i = 0; i < accentCount; i++) {
       accentPositions[i * 3] = THREE.MathUtils.randFloat(-14, 14);
       accentPositions[i * 3 + 1] = THREE.MathUtils.randFloat(-8, 8);
-      accentPositions[i * 3 + 2] = THREE.MathUtils.randFloat(-6, 2);
+      accentPositions[i * 3 + 2] = THREE.MathUtils.randFloat(-6, 0);
     }
     const accentGeometry = new THREE.BufferGeometry();
     accentGeometry.setAttribute(
@@ -69,7 +82,8 @@ export default function ThreeScene() {
       new THREE.BufferAttribute(accentPositions, 3)
     );
     const accentMaterial = new THREE.PointsMaterial({
-      size: 0.06,
+      size: 0.08,
+      map: sprite,
       color: 0xcde64b,
       transparent: true,
       opacity: 0.35,
@@ -128,6 +142,7 @@ export default function ThreeScene() {
       mainMaterial.dispose();
       accentGeometry.dispose();
       accentMaterial.dispose();
+      sprite.dispose();
       renderer.dispose();
       if (renderer.domElement.parentElement === container) {
         container.removeChild(renderer.domElement);
