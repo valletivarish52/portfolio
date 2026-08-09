@@ -1,6 +1,6 @@
 # Varish Valleti · Portfolio
 
-Personal portfolio of a Java Backend Developer: Spring Boot, AWS, and high-throughput insurance platforms.
+Personal portfolio of a backend engineer for insurance platforms: Spring Boot, AWS, and an obsession with latency.
 
 ![Portfolio hero](public/og.png)
 

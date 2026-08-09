@@ -46,7 +46,7 @@ export const EXPERIENCE = [
     meta: "Client: Axis Max Life Insurance · Project: MPro",
     period: "Nov 2024 - Present",
     summary:
-      "I build and run the product onboarding and policy search systems on Axis Max Life's issuance platform: new products launch without code changes, searches went from 15 seconds to under 3, and I own it all in production.",
+      "I build and run the product onboarding and policy search systems on Axis Max Life's issuance platform: new products launch without code changes, searches finish in under 3 seconds instead of 15, and I own it all in production.",
     points: [
       "Built configuration-driven onboarding for 12 insurance products with Spring Boot, Coherent Spark and AWS S3/CloudFront, eliminating 3-4 database calls per policy.",
       "Migrated group insurance (superannuation) workflows to a configuration-driven model, enabling product setup without code changes.",
@@ -104,7 +104,7 @@ export const WORK: WorkItem[] = [
       approach:
         "Moved plan-code assignment into configuration on S3 behind CloudFront, rebuilt onboarding config-first with Coherent Spark, migrated superannuation workflows the same way, replaced full-collection scans with nested-document indexing, parallelized external API calls, and put policy retrieval behind Redis-backed OTP verification.",
       outcome:
-        "12 products onboard through configuration with no code changes, 3-4 fewer database calls per policy, worst-case retrieval latency down 80% from 15s to under 3s, and a lookup flow that prefills 90% of a 6-stage customer journey.",
+        "All 12 products are onboarded through configuration with no code changes, every policy costs 3-4 fewer database calls, worst-case retrieval latency is down 80% from 15s to under 3s, and the lookup flow prefills 90% of a 6-stage customer journey.",
       points: [
         "Benefit Illustration support in wrapper APIs for fintech and aggregator integrations.",
         "Production ownership end to end: hotfixes, CI/CD and monitoring across GitLab, Jenkins, Kibana and CloudWatch.",
@@ -140,7 +140,7 @@ export const WORK: WorkItem[] = [
     tint: "230, 179, 102",
     caseStudy: {
       problem:
-        "Catalog logic tangled into a monolith cannot scale or deploy independently of the rest of the store.",
+        "When catalog logic is tangled into a monolith, it cannot scale or ship independently of the rest of the store.",
       approach:
         "Extracted the product domain into its own Spring Boot service: REST APIs for catalog operations, configuration externalized to a config server, designed to sit behind an API gateway.",
       outcome:
@@ -213,4 +213,4 @@ export const EDUCATION = {
 };
 
 export const AWARD =
-  "Excellence Award FY25-26, Axis Max Life Insurance, for outstanding performance on MPro.";
+  "Excellence Award FY25-26 from Axis Max Life Insurance, for outstanding performance on MPro.";
