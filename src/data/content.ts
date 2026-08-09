@@ -17,10 +17,26 @@ export const PROFILE = {
 };
 
 export const ACHIEVEMENTS = [
-  { stat: "80%", label: "worst-case API latency cut, 15s down to under 3s" },
-  { stat: "3000+", label: "policies restored after a production data incident" },
-  { stat: "50%", label: "fewer production exceptions under a Kaizen initiative" },
-  { stat: "600+", label: "SonarQube issues cleared across the codebase" },
+  {
+    stat: "80%",
+    dir: "faster",
+    label: "policy searches went from 15 seconds to under 3 seconds",
+  },
+  {
+    stat: "3000+",
+    dir: "policies saved",
+    label: "every affected record restored after a production data incident",
+  },
+  {
+    stat: "50%",
+    dir: "fewer errors",
+    label: "production issues halved through a quality initiative",
+  },
+  {
+    stat: "600+",
+    dir: "issues fixed",
+    label: "code-quality problems cleaned up across the platform",
+  },
 ];
 
 export const EXPERIENCE = [

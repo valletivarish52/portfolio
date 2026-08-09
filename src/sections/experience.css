@@ -12,7 +12,14 @@
 .exp-stat {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
+}
+
+.exp-stat-dir {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--accent);
 }
 
 .exp-stat-number {
@@ -28,10 +35,10 @@
 }
 
 .exp-stat-label {
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--mut);
-  max-width: 24ch;
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: #c9c9c4;
+  max-width: 26ch;
 }
 
 .exp-role {

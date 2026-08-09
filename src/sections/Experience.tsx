@@ -28,6 +28,7 @@ export default function Experience() {
               <span className="exp-stat-number">
                 <CountUp value={a.stat} />
               </span>
+              <span className="exp-stat-dir">{a.dir}</span>
               <span className="exp-stat-label">{a.label}</span>
             </motion.div>
           ))}
