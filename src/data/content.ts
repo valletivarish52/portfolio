@@ -89,24 +89,24 @@ export interface WorkItem {
 
 export const WORK: WorkItem[] = [
   {
-    name: "Meridian",
-    kind: "Insurance backend · in active development",
-    desc: "The policy issuance and payments backend of a fictional insurer, built in public: idempotent premium payments, a double-entry ledger and settlement reconciliation.",
+    name: "Hundi",
+    kind: "Payment switch · in active development",
+    desc: "A UPI-style payment switch and wallet backend, built in public: transfers that charge exactly once, a double-entry ledger and daily settlement reconciliation.",
     stack: ["Java 21", "Spring Boot 3", "Spring Modulith", "PostgreSQL", "Redis"],
     year: "2026",
     seed: 318,
     tint: "179, 156, 230",
     caseStudy: {
       overview:
-        "Meridian demonstrates, on a fictional insurer, the engineering patterns I build professionally under NDA. Development happens in public, commit by commit.",
+        "Hundi demonstrates, on a fictional payment network, the engineering patterns I build professionally under NDA. Development happens in public, commit by commit.",
       problem:
         "My strongest production work lives behind a client NDA, so there is no public code that shows how I design payment-grade backend systems.",
       approach:
-        "A Spring Modulith backend for a fictional insurer with enforced module boundaries: a policy state machine, premium payments with Stripe-style idempotency keys on Redis, a double-entry ledger, a transactional outbox with an idempotent consumer, and a Spring Batch reconciliation job that catches deliberately seeded settlement discrepancies.",
+        "A Spring Modulith backend for a fictional payment network with enforced module boundaries: wallet accounts, transfers with Stripe-style idempotency keys on Redis, a routing layer with bank simulators and a timeout/reversal state machine, a double-entry ledger, a transactional outbox with an idempotent consumer, and a Spring Batch reconciliation job that catches deliberately seeded settlement discrepancies.",
       outcome:
-        "One command starts a seeded demo. The roadmap ships module by module, with architecture decision records and Testcontainers-backed tests, including a parallel-duplicate-payment test asserting exactly one charge.",
+        "One command starts a seeded demo. The roadmap ships module by module, with architecture decision records and Testcontainers-backed tests, including a parallel-duplicate-transfer test asserting exactly one debit.",
     },
-    link: "https://github.com/valletivarish/meridian",
+    link: "https://github.com/valletivarish/hundi",
   },
   {
     name: "MPro",
