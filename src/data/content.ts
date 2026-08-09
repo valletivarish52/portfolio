@@ -89,24 +89,24 @@ export interface WorkItem {
 
 export const WORK: WorkItem[] = [
   {
-    name: "Hundi",
-    kind: "Payment switch · in active development",
-    desc: "A UPI-style payment switch and wallet backend, built in public: transfers that charge exactly once, a double-entry ledger and daily settlement reconciliation.",
+    name: "Hazri",
+    kind: "Workforce platform · in active development",
+    desc: "An HR platform backend in the spirit of Zoho People, built in public: leave and approvals as real state machines, attendance that counts every punch once, and a payroll run that can never double-pay.",
     stack: ["Java 21", "Spring Boot 3", "Spring Modulith", "PostgreSQL", "Redis"],
     year: "2026",
     seed: 318,
     tint: "179, 156, 230",
     caseStudy: {
       overview:
-        "Hundi demonstrates, on a fictional payment network, the engineering patterns I build professionally under NDA. Development happens in public, commit by commit.",
+        "Hazri demonstrates, on a fictional company, the engineering patterns I build professionally under NDA. Development happens in public, commit by commit.",
       problem:
-        "My strongest production work lives behind a client NDA, so there is no public code that shows how I design payment-grade backend systems.",
+        "My strongest production work lives behind a client NDA, so there is no public code that shows how I design workflow-heavy backend systems.",
       approach:
-        "A Spring Modulith backend for a fictional payment network with enforced module boundaries: wallet accounts, transfers with Stripe-style idempotency keys on Redis, a routing layer with bank simulators and a timeout/reversal state machine, a double-entry ledger, a transactional outbox with an idempotent consumer, and a Spring Batch reconciliation job that catches deliberately seeded settlement discrepancies.",
+        "A Spring Modulith backend for a fictional workforce platform with enforced module boundaries: effective-dated employee records that never rewrite history, leave accrual and approval state machines with config-driven multi-level chains, idempotent attendance event ingestion for retrying devices, a re-runnable Spring Batch payroll run that joins attendance and leave into a register, and a transactional outbox with an idempotent consumer.",
       outcome:
-        "One command starts a seeded demo. The roadmap ships module by module, with architecture decision records and Testcontainers-backed tests, including a parallel-duplicate-transfer test asserting exactly one debit.",
+        "One command starts a seeded demo. The roadmap ships module by module, with architecture decision records and Testcontainers-backed tests, including a duplicate-punch test asserting one attendance record and a payroll rerun test asserting zero double payments.",
     },
-    link: "https://github.com/valletivarish/hundi",
+    link: "https://github.com/valletivarish/hazri",
   },
   {
     name: "MPro",
