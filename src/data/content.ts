@@ -5,7 +5,7 @@ export const PROFILE = {
   role: "Backend Engineer, Insurance Platforms",
   availability: "Open to work",
   tagline:
-    "I build high-throughput backend systems for insurance platforms. Spring Boot, AWS, and an obsession with latency.",
+    "I build the backend systems insurance platforms run on. Spring Boot, AWS, and an obsession with latency.",
   location: "Hyderabad, India",
   email: "varishvalleti52@gmail.com",
   phone: "+91 8919504427",
@@ -46,7 +46,7 @@ export const EXPERIENCE = [
     meta: "Client: Axis Max Life Insurance · Project: MPro",
     period: "Nov 2024 - Present",
     summary:
-      "Configuration-driven onboarding for 12 insurance products, OTP-secured policy retrieval, and end-to-end production ownership on a high-volume insurance platform.",
+      "I build and run the product onboarding and policy search systems on Axis Max Life's issuance platform: new products launch without code changes, searches went from 15 seconds to under 3, and I own it all in production.",
     points: [
       "Built configuration-driven onboarding for 12 insurance products with Spring Boot, Coherent Spark and AWS S3/CloudFront, eliminating 3-4 database calls per policy.",
       "Migrated group insurance (superannuation) workflows to a configuration-driven model, enabling product setup without code changes.",
@@ -61,7 +61,7 @@ export const EXPERIENCE = [
     meta: "Full-stack insurance modules",
     period: "May 2024 - Nov 2024",
     summary:
-      "Full-stack policy, claims and payment workflows with Spring Boot, React, MySQL and Redis.",
+      "Built policy, claims and payment features across the full stack with Spring Boot, React, MySQL and Redis.",
     points: [
       "Developed policy, customer, claims and payment workflows with Spring Boot, React, MySQL and Redis.",
       "Implemented JWT authentication, Spring Security and indexed MySQL queries to speed up reporting.",
@@ -91,18 +91,18 @@ export const WORK: WorkItem[] = [
   {
     name: "MPro",
     kind: "Insurance onboarding platform · Axis Max Life",
-    desc: "Configuration-driven onboarding for 12 products, with OTP-secured policy retrieval that prefills 90% of a 6-stage customer journey.",
+    desc: "The platform Axis Max Life uses to launch and issue insurance policies. 12 products run on it; I made launches config-driven and policy searches near-instant.",
     stack: ["Spring Boot", "Coherent Spark", "AWS S3", "CloudFront", "Redis"],
     year: "2025",
     seed: 47,
     tint: "205, 230, 75",
     caseStudy: {
       overview:
-        "MPro is Axis Max Life's policy issuance platform. I work across onboarding, policy retrieval and integrations, with end-to-end production ownership.",
+        "MPro is Axis Max Life's policy issuance platform. I work across product onboarding, policy retrieval and partner integrations, with end-to-end production ownership.",
       problem:
         "Product rules lived in code and the database: plan-code assignment alone cost 3-4 database calls per policy, every product launch needed a release, and worst-case policy retrieval ran full-collection scans that took up to 15 seconds.",
       approach:
-        "Moved plan-code assignment into configuration on S3 behind CloudFront, rebuilt onboarding config-first with Coherent Spark, migrated superannuation workflows the same way, replaced full-collection scans with nested-document indexing, parallelized external API calls, and put policy retrieval behind Redis-based OTP verification.",
+        "Moved plan-code assignment into configuration on S3 behind CloudFront, rebuilt onboarding config-first with Coherent Spark, migrated superannuation workflows the same way, replaced full-collection scans with nested-document indexing, parallelized external API calls, and put policy retrieval behind Redis-backed OTP verification.",
       outcome:
         "12 products onboard through configuration with no code changes, 3-4 fewer database calls per policy, worst-case retrieval latency down 80% from 15s to under 3s, and a lookup flow that prefills 90% of a 6-stage customer journey.",
       points: [
@@ -115,7 +115,7 @@ export const WORK: WorkItem[] = [
   {
     name: "Guardian Life Assurance",
     kind: "Full-stack insurance system",
-    desc: "Role-based access control, automated policy workflows and dashboards for policy analytics and claim tracking.",
+    desc: "A complete insurance system built end to end: policies, claims, payments and analytics dashboards, with access controlled by role.",
     stack: ["Spring Boot", "React", "MySQL", "Spring Security"],
     year: "2024",
     seed: 172,
@@ -133,7 +133,7 @@ export const WORK: WorkItem[] = [
   {
     name: "Buyzaar Product MS",
     kind: "E-commerce microservice",
-    desc: "Product microservice for an e-commerce platform: catalog management, REST APIs and service-ready configuration.",
+    desc: "A product catalog service for an online store, built to deploy and scale on its own behind an API gateway.",
     stack: ["Java", "Spring Boot", "Microservices"],
     year: "2026",
     seed: 233,
@@ -151,38 +151,36 @@ export const WORK: WorkItem[] = [
   {
     name: "Java Design Patterns",
     kind: "Core Java reference",
-    desc: "Working catalog of Java fundamentals and design patterns: creational, structural and behavioural implementations with practical examples.",
+    desc: "A working reference of core Java and classic design patterns, written as runnable examples rather than notes.",
     stack: ["Java", "OOP", "Design Patterns"],
     year: "2025",
     seed: 318,
     tint: "179, 156, 230",
     caseStudy: {
-      overview:
-        "A working reference of core Java and design patterns, written as runnable examples rather than notes.",
-      points: [
-        "Creational, structural and behavioural pattern families implemented in idiomatic Java.",
-        "Concurrency, collections and streams fundamentals alongside the patterns.",
-        "Doubles as an interview prep and code review companion.",
-      ],
+      problem:
+        "Most design-pattern tutorials stop at diagrams; they rarely show the pattern doing real work in code you can run.",
+      approach:
+        "Implemented the creational, structural and behavioural families in idiomatic Java, alongside concurrency, collections and streams fundamentals, each as a self-contained runnable example.",
+      outcome:
+        "A reference that doubles as interview preparation and a code-review companion: one pattern per example, all executable.",
     },
     link: "https://github.com/valletivarish/java-fundamentals-and-design-patterns",
   },
   {
     name: "Bank Application",
     kind: "Full-stack banking app",
-    desc: "React banking application covering accounts, transactions and transfers with a clean component structure.",
+    desc: "A React banking app covering the daily flows of a retail account: balances, transactions and transfers.",
     stack: ["React", "JavaScript"],
     year: "2024",
     seed: 521,
     tint: "127, 224, 195",
     caseStudy: {
-      overview:
-        "A React banking interface covering the daily flows of a retail account.",
-      points: [
-        "Accounts, transactions and transfer views with a reusable component structure.",
-        "Client-side validation and state handling for form-heavy flows.",
-        "REST-backed data layer kept behind a thin API module.",
-      ],
+      problem:
+        "Banking flows are form-heavy and stateful; without a deliberate component structure they collapse into tangled, hard-to-validate views.",
+      approach:
+        "Built accounts, transactions and transfers as isolated React views over a thin REST data layer, with client-side validation on every form and reusable UI primitives throughout.",
+      outcome:
+        "A clean, maintainable structure covering the daily flows of a retail account, with each view testable on its own.",
     },
     link: "https://github.com/valletivarish/bank-application-react",
   },
