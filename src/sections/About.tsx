@@ -1,9 +1,9 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { AWARD, STACK_LINE } from "../data/content";
+import { AWARD, EDUCATION, STACK_LINE } from "../data/content";
 import "./about.css";
 
 const STATEMENT =
-  "Backend engineer at Monocept, building the MPro platform for Axis Max Life Insurance. I care about the paths users never see: the query plan, the cache hit, the failed retry.";
+  "Backend engineer with 2+ years at Monocept, building the MPro platform for Axis Max Life Insurance. I care about the paths users never see: the query plan, the cache hit, the failed retry.";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const CURTAIN: [number, number, number, number] = [0.87, 0, 0.13, 1];
@@ -75,6 +75,9 @@ export default function About() {
         <div className="about-award-band">
           <motion.p className="about-award" {...fadeUp(0)}>
             {AWARD}
+          </motion.p>
+          <motion.p className="about-education" {...fadeUp(0.05)}>
+            {EDUCATION.degree}, {EDUCATION.school}, {EDUCATION.period}
           </motion.p>
           <div className="about-award-media">
             <motion.img

@@ -51,6 +51,7 @@ export default function Contact() {
     { label: "GitHub", href: PROFILE.links.github },
     { label: "LinkedIn", href: PROFILE.links.linkedin },
     { label: "LeetCode", href: PROFILE.links.leetcode },
+    { label: PROFILE.phone, href: `tel:${PROFILE.phone.replace(/ /g, "")}` },
   ];
 
   return (
@@ -82,11 +83,17 @@ export default function Contact() {
         <CopyEmail />
 
         <div className="contact-links">
-          {links.map((link) => (
-            <a key={link.label} href={link.href} target="_blank" rel="noreferrer">
-              {link.label} ↗
-            </a>
-          ))}
+          {links.map((link) =>
+            link.href.startsWith("http") ? (
+              <a key={link.label} href={link.href} target="_blank" rel="noreferrer">
+                {link.label} ↗
+              </a>
+            ) : (
+              <a key={link.label} href={link.href}>
+                {link.label}
+              </a>
+            )
+          )}
           <a href={`${import.meta.env.BASE_URL}${RESUME_FILE}`} download>
             Résumé ↓
           </a>

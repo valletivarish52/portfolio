@@ -89,6 +89,26 @@ export interface WorkItem {
 
 export const WORK: WorkItem[] = [
   {
+    name: "Meridian",
+    kind: "Insurance backend · in active development",
+    desc: "The policy issuance and payments backend of a fictional insurer, built in public: idempotent premium payments, a double-entry ledger and settlement reconciliation.",
+    stack: ["Java 21", "Spring Boot 3", "Spring Modulith", "PostgreSQL", "Redis"],
+    year: "2026",
+    seed: 318,
+    tint: "179, 156, 230",
+    caseStudy: {
+      overview:
+        "Meridian demonstrates, on a fictional insurer, the engineering patterns I build professionally under NDA. Development happens in public, commit by commit.",
+      problem:
+        "My strongest production work lives behind a client NDA, so there is no public code that shows how I design payment-grade backend systems.",
+      approach:
+        "A Spring Modulith backend for a fictional insurer with enforced module boundaries: a policy state machine, premium payments with Stripe-style idempotency keys on Redis, a double-entry ledger, a transactional outbox with an idempotent consumer, and a Spring Batch reconciliation job that catches deliberately seeded settlement discrepancies.",
+      outcome:
+        "One command starts a seeded demo. The roadmap ships module by module, with architecture decision records and Testcontainers-backed tests, including a parallel-duplicate-payment test asserting exactly one charge.",
+    },
+    link: "https://github.com/valletivarish/meridian",
+  },
+  {
     name: "MPro",
     kind: "Insurance onboarding platform · Axis Max Life",
     desc: "The platform Axis Max Life uses to launch and issue insurance policies. 12 products run on it; I made launches config-driven and policy searches near-instant.",
@@ -147,42 +167,6 @@ export const WORK: WorkItem[] = [
         "An independently deployable catalog service that slots into a gateway-fronted setup alongside cart and order services.",
     },
     link: "https://github.com/valletivarish/buyzaar-product-ms",
-  },
-  {
-    name: "Java Design Patterns",
-    kind: "Core Java reference",
-    desc: "A working reference of core Java and classic design patterns, written as runnable examples rather than notes.",
-    stack: ["Java", "OOP", "Design Patterns"],
-    year: "2025",
-    seed: 318,
-    tint: "179, 156, 230",
-    caseStudy: {
-      problem:
-        "Most design-pattern tutorials stop at diagrams; they rarely show the pattern doing real work in code you can run.",
-      approach:
-        "Implemented the creational, structural and behavioural families in idiomatic Java, alongside concurrency, collections and streams fundamentals, each as a self-contained runnable example.",
-      outcome:
-        "A reference that doubles as interview preparation and a code-review companion: one pattern per example, all executable.",
-    },
-    link: "https://github.com/valletivarish/java-fundamentals-and-design-patterns",
-  },
-  {
-    name: "Bank Application",
-    kind: "Full-stack banking app",
-    desc: "A React banking app covering the daily flows of a retail account: balances, transactions and transfers.",
-    stack: ["React", "JavaScript"],
-    year: "2024",
-    seed: 521,
-    tint: "127, 224, 195",
-    caseStudy: {
-      problem:
-        "Banking flows are form-heavy and stateful; without a deliberate component structure they collapse into tangled, hard-to-validate views.",
-      approach:
-        "Built accounts, transactions and transfers as isolated React views over a thin REST data layer, with client-side validation on every form and reusable UI primitives throughout.",
-      outcome:
-        "A clean, maintainable structure covering the daily flows of a retail account, with each view testable on its own.",
-    },
-    link: "https://github.com/valletivarish/bank-application-react",
   },
 ];
 
