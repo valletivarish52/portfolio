@@ -5,7 +5,7 @@ export const PROFILE = {
   role: "Backend Engineer, Insurance Platforms",
   availability: "Open to work",
   tagline:
-    "I build the backend systems insurance platforms run on. Spring Boot, AWS, and an obsession with latency.",
+    "I build the backend systems that power insurance platforms. Spring Boot, AWS, and an obsession with latency.",
   location: "Hyderabad, India",
   email: "varishvalleti52@gmail.com",
   phone: "+91 8919504427",
