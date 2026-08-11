@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { WORK, WorkItem } from "../data/content";
 import FlowField from "../components/FlowField";
+import LiveCommit from "../components/LiveCommit";
 import WorkModal from "../components/WorkModal";
 import "./work.css";
 
@@ -53,6 +54,7 @@ function WorkCard({ p, onOpen }: { p: WorkItem; onOpen: () => void }) {
         <p className="work-kind">{p.kind}</p>
         <p className="work-desc">{p.desc}</p>
         <p className="work-stack">{p.stack.join(" / ")}</p>
+        {p.liveRepo && <LiveCommit repo={p.liveRepo} />}
         <button className="work-case" onClick={onOpen}>
           Case study
         </button>

@@ -18,6 +18,14 @@
   color: var(--ink);
 }
 
+.about-note {
+  margin-top: clamp(28px, 4vw, 44px);
+  font-size: 16px;
+  line-height: 1.65;
+  color: #c9c9c4;
+  max-width: 52ch;
+}
+
 .about-stack {
   margin-top: clamp(40px, 6vw, 64px);
   font-family: var(--font-mono);

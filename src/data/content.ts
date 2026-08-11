@@ -77,6 +77,7 @@ export interface WorkItem {
   year: string;
   seed: number;
   tint: string;
+  liveRepo?: string;
   caseStudy: {
     overview?: string;
     problem?: string;
@@ -96,6 +97,7 @@ export const WORK: WorkItem[] = [
     year: "2026",
     seed: 318,
     tint: "179, 156, 230",
+    liveRepo: "valletivarish/hazri",
     caseStudy: {
       overview:
         "Hazri demonstrates, on a fictional company, the engineering patterns I build professionally under NDA. Development happens in public, commit by commit.",

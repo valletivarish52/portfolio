@@ -126,6 +126,23 @@
   color: var(--mut);
 }
 
+.work-live {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--mut);
+}
+
+.work-live-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
 .work-case {
   margin-top: 16px;
   background: none;
