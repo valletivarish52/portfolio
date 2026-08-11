@@ -50,11 +50,6 @@ export default function About() {
                 ))}
               </p>
             )}
-            <motion.p className="about-note" {...fadeUp(0.05)}>
-              Why insurance tech? Money, regulation and trust all move through
-              the same code, and the systems are unforgiving in the best way.
-              When my work is invisible, it means it worked.
-            </motion.p>
             <motion.p className="about-stack" {...fadeUp(0.1)}>
               {STACK_LINE}
             </motion.p>
