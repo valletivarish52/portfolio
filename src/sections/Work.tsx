@@ -18,7 +18,7 @@ function WorkCard({ p, onOpen }: { p: WorkItem; onOpen: () => void }) {
         className="work-media"
         initial={reduce ? false : "hidden"}
         whileInView={reduce ? undefined : "show"}
-        viewport={{ once: true, amount: 0.25 }}
+        viewport={{ once: true, amount: 0.15 }}
       >
         <motion.div
           className="work-curtain"
@@ -26,7 +26,7 @@ function WorkCard({ p, onOpen }: { p: WorkItem; onOpen: () => void }) {
             hidden: { clipPath: "inset(100% 0 0 0)" },
             show: { clipPath: "inset(0% 0 0 0)" },
           }}
-          transition={{ duration: 0.9, ease: EASE_CURTAIN }}
+          transition={{ duration: 0.7, ease: EASE_CURTAIN }}
         >
           <FlowField seed={p.seed} tint={p.tint} label={p.name} />
         </motion.div>
@@ -36,8 +36,8 @@ function WorkCard({ p, onOpen }: { p: WorkItem; onOpen: () => void }) {
         className="work-text"
         initial={reduce ? false : { opacity: 0, y: 24 }}
         whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.25 }}
-        transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.35 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.5, ease: EASE_OUT, delay: 0.1 }}
       >
         <div className="work-row">
           <h3 className="work-name">
@@ -121,8 +121,8 @@ export default function Work() {
           <motion.h2
             initial={reduce ? false : { y: "110%" }}
             whileInView={reduce ? undefined : { y: "0%" }}
-            viewport={{ once: true, amount: 0.6 }}
-            transition={{ duration: 0.9, ease: EASE_OUT }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: EASE_OUT }}
           >
             Selected work
           </motion.h2>

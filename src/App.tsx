@@ -119,8 +119,8 @@ export default function App() {
       >
         <Hero ready={ready} />
         <Marquee />
-        <Work />
         <Experience />
+        <Work />
         <About />
         <Contact />
       </motion.main>

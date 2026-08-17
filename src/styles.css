@@ -288,6 +288,11 @@ h2 {
   gap: 7px;
   font-size: 11.5px;
   color: rgba(255, 255, 255, 0.85);
+  transition: color 0.25s ease;
+}
+
+a.nav-status:hover {
+  color: #fff;
 }
 
 .nav-status-dot {

@@ -5,7 +5,7 @@ export const PROFILE = {
   role: "Backend Engineer, Insurance Platforms",
   availability: "Open to work",
   tagline:
-    "I build the backend systems that power insurance platforms. Spring Boot, AWS, and an obsession with latency.",
+    "2+ years at Monocept, building Axis Max Life's policy issuance platform. Policy searches went from 15 seconds to under 3.",
   location: "Hyderabad, India",
   email: "varishvalleti52@gmail.com",
   phone: "+91 8919504427",
@@ -90,30 +90,9 @@ export interface WorkItem {
 
 export const WORK: WorkItem[] = [
   {
-    name: "Hazri",
-    kind: "Workforce platform · in active development",
-    desc: "An HR platform backend in the spirit of Zoho People, built in public: leave and approvals as real state machines, attendance that counts every punch once, and a payroll run that can never double-pay.",
-    stack: ["Java 21", "Spring Boot 3", "Spring Modulith", "PostgreSQL", "Redis"],
-    year: "2026",
-    seed: 318,
-    tint: "179, 156, 230",
-    liveRepo: "valletivarish/hazri",
-    caseStudy: {
-      overview:
-        "Hazri demonstrates, on a fictional company, the engineering patterns I build professionally under NDA. Development happens in public, commit by commit.",
-      problem:
-        "My strongest production work lives behind a client NDA, so there is no public code that shows how I design workflow-heavy backend systems.",
-      approach:
-        "A Spring Modulith backend for a fictional workforce platform with enforced module boundaries: effective-dated employee records that never rewrite history, leave accrual and approval state machines with config-driven multi-level chains, idempotent attendance event ingestion for retrying devices, a re-runnable Spring Batch payroll run that joins attendance and leave into a register, and a transactional outbox with an idempotent consumer.",
-      outcome:
-        "One command starts a seeded demo. The roadmap ships module by module, with architecture decision records and Testcontainers-backed tests, including a duplicate-punch test asserting one attendance record and a payroll rerun test asserting zero double payments.",
-    },
-    link: "https://github.com/valletivarish/hazri",
-  },
-  {
     name: "MPro",
     kind: "Insurance onboarding platform · Axis Max Life",
-    desc: "The platform Axis Max Life uses to launch and issue insurance policies. 12 products run on it; I made launches config-driven and policy searches near-instant.",
+    desc: "The platform Axis Max Life uses to launch and issue insurance policies. 12 products run on it; I made launches config-driven and cut policy searches from 15 seconds to under 3.",
     stack: ["Spring Boot", "Coherent Spark", "AWS S3", "CloudFront", "Redis"],
     year: "2025",
     seed: 47,
@@ -135,8 +114,29 @@ export const WORK: WorkItem[] = [
     },
   },
   {
+    name: "Hazri",
+    kind: "Workforce platform · in active development",
+    desc: "My strongest production work is under NDA, so Hazri rebuilds those patterns in public: leave and approvals as real state machines, attendance that counts every punch once, and a payroll run that can never double-pay.",
+    stack: ["Java 21", "Spring Boot 3", "Spring Modulith", "PostgreSQL", "Redis"],
+    year: "2026",
+    seed: 318,
+    tint: "179, 156, 230",
+    liveRepo: "valletivarish/hazri",
+    caseStudy: {
+      overview:
+        "Hazri demonstrates, on a fictional company, the engineering patterns I build professionally under NDA. Development happens in public, commit by commit.",
+      problem:
+        "My strongest production work lives behind a client NDA, so there is no public code that shows how I design workflow-heavy backend systems.",
+      approach:
+        "A Spring Modulith backend for a fictional workforce platform with enforced module boundaries: effective-dated employee records that never rewrite history, leave accrual and approval state machines with config-driven multi-level chains, idempotent attendance event ingestion for retrying devices, a re-runnable Spring Batch payroll run that joins attendance and leave into a register, and a transactional outbox with an idempotent consumer.",
+      outcome:
+        "One command starts a seeded demo. The roadmap ships module by module, with architecture decision records and Testcontainers-backed tests, including a duplicate-punch test asserting one attendance record and a payroll rerun test asserting zero double payments.",
+    },
+    link: "https://github.com/valletivarish/hazri",
+  },
+  {
     name: "Guardian Life Assurance",
-    kind: "Full-stack insurance system",
+    kind: "Personal project · Full-stack insurance system",
     desc: "A complete insurance system built end to end: policies, claims, payments and analytics dashboards, with access controlled by role.",
     stack: ["Spring Boot", "React", "MySQL", "Spring Security"],
     year: "2024",

@@ -7,8 +7,8 @@ import { lockScroll, unlockScroll } from "../lib/scrollLock";
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const SECTIONS: [string, string][] = [
-  ["#work", "Work"],
   ["#experience", "Experience"],
+  ["#work", "Work"],
   ["#about", "About"],
   ["#contact", "Contact"],
 ];
@@ -56,10 +56,10 @@ export default function Nav({ ready }: { ready: boolean }) {
           VV
         </a>
         <div className="nav-links">
-          <span className="nav-status">
+          <a className="nav-status" href="#contact" title="Get in touch">
             <span className="nav-status-dot" aria-hidden />
             {PROFILE.availability}
-          </span>
+          </a>
           {SECTIONS.map(([href, label]) => (
             <a key={href} href={href}>
               {label}

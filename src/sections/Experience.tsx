@@ -14,8 +14,8 @@ export default function Experience() {
       : {
           initial: { opacity: 0, y: 28 },
           whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true, amount: 0.3 },
-          transition: { duration: 0.7, ease: EASE, delay },
+          viewport: { once: true, amount: 0.15 },
+          transition: { duration: 0.6, ease: EASE, delay },
         };
 
   return (

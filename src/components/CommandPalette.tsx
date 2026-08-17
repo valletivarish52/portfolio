@@ -38,8 +38,8 @@ export default function CommandPalette({ ready }: { ready: boolean }) {
 
   const actions = useMemo<Action[]>(
     () => [
-      { id: "work", label: "Go to Work", hint: "Section", run: () => { scrollToSection("#work"); close(); } },
       { id: "experience", label: "Go to Experience", hint: "Section", run: () => { scrollToSection("#experience"); close(); } },
+      { id: "work", label: "Go to Work", hint: "Section", run: () => { scrollToSection("#work"); close(); } },
       { id: "about", label: "Go to About", hint: "Section", run: () => { scrollToSection("#about"); close(); } },
       { id: "contact", label: "Go to Contact", hint: "Section", run: () => { scrollToSection("#contact"); close(); } },
       {

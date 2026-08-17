@@ -16,14 +16,14 @@ export default function CountUp({ value }: { value: string }) {
 
   const reduce = useReducedMotion();
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.6 });
+  const inView = useInView(ref, { once: true, amount: 0.25 });
   const mv = useMotionValue(0);
   const text = useTransform(mv, (v) => `${Math.round(v)}${suffix}`);
 
   useEffect(() => {
     if (!inView || reduce) return;
     const controls = animate(mv, target, {
-      duration: 1.6,
+      duration: 0.9,
       ease: [0.16, 1, 0.3, 1],
     });
     return () => controls.stop();
