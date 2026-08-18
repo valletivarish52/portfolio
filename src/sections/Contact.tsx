@@ -58,7 +58,7 @@ export default function Contact() {
     <section id="contact" className="contact">
       <div className="container">
         <p className="contact-status">
-          Open to full-time roles and interesting backend problems.
+          Open to full-time backend roles.
         </p>
         <div className="h2-mask">
           <motion.h2
@@ -68,7 +68,7 @@ export default function Contact() {
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.8, ease: EASE }}
           >
-            Have a project in mind?
+            Get in touch
           </motion.h2>
         </div>
 

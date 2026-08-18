@@ -35,7 +35,7 @@ export const ACHIEVEMENTS = [
   {
     stat: "600+",
     dir: "issues fixed",
-    label: "code-quality problems cleaned up across the platform",
+    label: "code-quality issues cleared across the codebase",
   },
 ];
 
@@ -116,7 +116,7 @@ export const WORK: WorkItem[] = [
   {
     name: "Hazri",
     kind: "Workforce platform · in active development",
-    desc: "My strongest production work is under NDA, so Hazri rebuilds those patterns in public: leave and approvals as real state machines, attendance that counts every punch once, and a payroll run that can never double-pay.",
+    desc: "My strongest production work is under NDA, so Hazri rebuilds those patterns in public: leave and approvals as real state machines, idempotent attendance ingestion, and a payroll run designed to never double-pay.",
     stack: ["Java 21", "Spring Boot 3", "Spring Modulith", "PostgreSQL", "Redis"],
     year: "2026",
     seed: 318,
@@ -130,7 +130,7 @@ export const WORK: WorkItem[] = [
       approach:
         "A Spring Modulith backend for a fictional workforce platform with enforced module boundaries: effective-dated employee records that never rewrite history, leave accrual and approval state machines with config-driven multi-level chains, idempotent attendance event ingestion for retrying devices, a re-runnable Spring Batch payroll run that joins attendance and leave into a register, and a transactional outbox with an idempotent consumer.",
       outcome:
-        "One command starts a seeded demo. The roadmap ships module by module, with architecture decision records and Testcontainers-backed tests, including a duplicate-punch test asserting one attendance record and a payroll rerun test asserting zero double payments.",
+        "In progress, in public. The roadmap ships module by module toward a one-command seeded demo, with architecture decision records and Testcontainers-backed tests along the way, including a duplicate-punch test asserting one attendance record and a payroll rerun test asserting zero double payments. The commit history is the status report.",
     },
     link: "https://github.com/valletivarish/hazri",
   },

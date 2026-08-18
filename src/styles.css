@@ -507,6 +507,6 @@ a.nav-status:hover {
 
 @media (max-width: 720px) {
   .nav-links { gap: 16px; }
-  .nav-links > a { display: none; }
+  .nav-links > a:not(.nav-status) { display: none; }
   .nav-burger { display: block; }
 }
