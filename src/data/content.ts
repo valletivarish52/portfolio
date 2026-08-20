@@ -5,7 +5,7 @@ export const PROFILE = {
   role: "Backend Engineer, Insurance Platforms",
   availability: "Open to work",
   tagline:
-    "2+ years at Monocept, building Axis Max Life's policy issuance platform. Policy searches went from 15 seconds to under 3.",
+    "2+ years at Monocept, building Axis Max Life's policy platforms. Policy searches went from 15 seconds to under 3.",
   location: "Hyderabad, India",
   email: "varishvalleti52@gmail.com",
   phone: "+91 8919504427",
@@ -43,28 +43,17 @@ export const EXPERIENCE = [
   {
     company: "Monocept",
     role: "Software Engineer",
-    meta: "Client: Axis Max Life Insurance · Project: MPro",
-    period: "Nov 2024 - Present",
+    meta: "Client: Axis Max Life Insurance · Dolphin and MPro",
+    period: "May 2024 - Present",
     summary:
-      "I build and run the product onboarding and policy search systems on Axis Max Life's issuance platform: new products launch without code changes, searches finish in under 3 seconds instead of 15, and I own it all in production.",
+      "Started on MPro, building configuration-driven onboarding and policy search for 12 products; now integrating policy reinstatement across Dolphin's event-driven platform of 26 microservices, with production ownership on both.",
     points: [
-      "Built configuration-driven onboarding for 12 insurance products with Spring Boot, Coherent Spark and AWS S3/CloudFront, eliminating 3-4 database calls per policy.",
-      "Migrated group insurance (superannuation) workflows to a configuration-driven model, enabling product setup without code changes.",
-      "Designed secure policy retrieval APIs with Redis-based OTP authentication, prefilling 90% of a 6-stage customer journey.",
-      "Extended wrapper APIs with Benefit Illustration support for fintech and aggregator integrations.",
-      "Owned production support, hotfix deployments, CI/CD and monitoring across GitLab, Jenkins, Kibana and CloudWatch.",
-    ],
-  },
-  {
-    company: "Monocept",
-    role: "Software Intern",
-    meta: "Full-stack insurance modules",
-    period: "May 2024 - Nov 2024",
-    summary:
-      "Built policy, claims and payment features across the full stack with Spring Boot, React, MySQL and Redis.",
-    points: [
-      "Developed policy, customer, claims and payment workflows with Spring Boot, React, MySQL and Redis.",
-      "Implemented JWT authentication, Spring Security and indexed MySQL queries to speed up reporting.",
+      "Integrating policy-reinstatement processing into 8 Spring Boot microservices, propagating new case parameters through 15 downstream callback APIs with backward-compatible validation.",
+      "Building reinstatement persistence and retrieval in DynamoDB across ingestion, asynchronous SQS processing and encrypted downstream callbacks, with JUnit and Mockito coverage.",
+      "Implementing a configurable rule-engine exemption that skips document checks already cleared at original issuance, eliminating redundant re-verification.",
+      "Engineered configuration-driven onboarding spanning 12 retail products and group insurance, converting Excel-based business rules into JSON configuration and eliminating 3-4 database calls per policy.",
+      "Developed rate-limited partner APIs exposing premium and benefit calculations and generating benefit-illustration PDFs for fintech and aggregator platforms.",
+      "Designed secure policy retrieval with Redis-based OTP authentication, prefilling 90% of a 6-stage customer journey.",
     ],
   },
 ];
@@ -103,14 +92,31 @@ export const WORK: WorkItem[] = [
       problem:
         "Product rules lived in code and the database: plan-code assignment alone cost 3-4 database calls per policy, every product launch needed a release, and worst-case policy retrieval ran full-collection scans that took up to 15 seconds.",
       approach:
-        "Moved plan-code assignment into configuration on S3 behind CloudFront, rebuilt onboarding config-first with Coherent Spark, migrated superannuation workflows the same way, replaced full-collection scans with nested-document indexing, parallelized external API calls, and put policy retrieval behind Redis-backed OTP verification.",
+        "Converted Excel-based business rules into JSON configuration served from S3 behind CloudFront, rebuilt onboarding config-first across retail and group insurance, replaced full-collection scans with MongoDB nested-document indexing, ran external API calls concurrently, and put policy retrieval behind Redis-backed OTP verification.",
       outcome:
-        "All 12 products are onboarded through configuration with no code changes, every policy costs 3-4 fewer database calls, worst-case retrieval latency is down 80% from 15s to under 3s, and the lookup flow prefills 90% of a 6-stage customer journey.",
+        "All 12 products are onboarded through configuration with no code changes, every policy costs 3-4 fewer database calls, worst-case retrieval latency is down 80% from 15s to under 3s, and the modernization program nearly halved new-product delivery timelines.",
       points: [
-        "Benefit Illustration support in wrapper APIs for fintech and aggregator integrations.",
+        "Rate-limited partner APIs exposing premium and benefit calculations and generating benefit-illustration PDFs for fintech and aggregator platforms.",
         "Production ownership end to end: hotfixes, CI/CD and monitoring across GitLab, Jenkins, Kibana and CloudWatch.",
         "Resolved a production data mapping incident affecting 3000+ policies, restoring end-to-end data integrity.",
       ],
+    },
+  },
+  {
+    name: "Dolphin",
+    kind: "Policy reinstatement · Axis Max Life",
+    desc: "An event-driven platform of 26 microservices at Axis Max Life. I'm integrating policy reinstatement across 8 of them, with changes flowing through 15 downstream APIs without breaking existing consumers.",
+    stack: ["Java", "Spring Boot", "DynamoDB", "SQS", "Microservices"],
+    year: "2026",
+    seed: 521,
+    tint: "127, 224, 195",
+    caseStudy: {
+      problem:
+        "Reinstating a lapsed policy touches far more than one service: new case parameters must reach 15 downstream callback APIs across an event-driven platform of 26 microservices, without breaking any existing consumer.",
+      approach:
+        "I'm integrating reinstatement processing into 8 Spring Boot microservices: DynamoDB persistence across ingestion, asynchronous SQS processing and encrypted downstream callbacks, backward-compatible validation on every touched API, a configurable rule-engine exemption for document checks already cleared at original issuance, and JUnit/Mockito coverage throughout.",
+      outcome:
+        "In progress, shipping service by service. The rule-engine exemption eliminates redundant document re-verification for every reinstatement case already cleared at issuance.",
     },
   },
   {
@@ -173,7 +179,7 @@ export const WORK: WorkItem[] = [
 ];
 
 export const STACK_LINE =
-  "Java / Spring Boot / AWS / Redis / MySQL / MongoDB / Docker / Jenkins";
+  "Java / Spring Boot / Microservices / AWS / MongoDB / DynamoDB / Redis / Kafka / MySQL / Docker / Jenkins";
 
 export const RESUME_FILE = "Varish_Valleti_Resume.pdf";
 
@@ -199,4 +205,4 @@ export const EDUCATION = {
 };
 
 export const AWARD =
-  "Excellence Award FY25-26 from Axis Max Life Insurance, for outstanding performance on MPro.";
+  "Excellence Award FY25-26 from Axis Max Life Insurance, with senior-leadership recognition for a 12-product modernization program that nearly halved new-product delivery timelines.";

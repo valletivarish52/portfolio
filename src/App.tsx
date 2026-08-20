@@ -26,6 +26,8 @@ const MARQUEE_ITEMS = [
   "AWS",
   "Redis",
   "Microservices",
+  "DynamoDB",
+  "Kafka",
   "React",
   "MySQL",
   "MongoDB",

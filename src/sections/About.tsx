@@ -3,7 +3,7 @@ import { AWARD, EDUCATION, STACK_LINE } from "../data/content";
 import "./about.css";
 
 const STATEMENT =
-  "I joined Monocept as an intern and now own production systems end to end: onboarding, policy search, hotfixes, monitoring. I care about the paths users never see: the query plan, the cache hit, the failed retry.";
+  "My work spans two Axis Max Life platforms: MPro's policy onboarding and search, and Dolphin's event-driven reinstatement flows. I care about the paths users never see: the query plan, the cache hit, the failed retry.";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const CURTAIN: [number, number, number, number] = [0.87, 0, 0.13, 1];
