@@ -25,7 +25,7 @@
   justify-content: space-between;
   gap: 32px;
   width: 100%;
-  padding-top: clamp(72px, 11vh, 120px);
+  padding-top: clamp(56px, 8vh, 90px);
 }
 
 .work-horizontal h2 {
@@ -47,7 +47,28 @@
   transform-origin: left;
 }
 
+.work-h-ghost {
+  position: absolute;
+  top: 50%;
+  left: 4vw;
+  transform: translateY(-50%);
+  font-size: clamp(9rem, 22vw, 19rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.07);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.work-horizontal {
+  position: relative;
+}
+
 .work-h-track {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: clamp(40px, 5vw, 72px);
@@ -62,7 +83,11 @@
 }
 
 .work-horizontal .work-media {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
+}
+
+.work-horizontal .work-desc {
+  font-size: 14px;
 }
 
 .work-grid {

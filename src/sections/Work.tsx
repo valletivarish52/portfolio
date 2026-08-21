@@ -98,24 +98,53 @@ export default function Work() {
 
     const ctx = gsap.context(() => {
       const track = trackRef.current!;
+      const ghost = wrapRef.current!.querySelector(".work-h-ghost");
+      const cards = gsap.utils.toArray<HTMLElement>(".work-h-track .work-item");
       const distance = () => Math.max(0, track.scrollWidth - window.innerWidth);
-      gsap.to(track, {
-        x: () => -distance(),
-        ease: "none",
+
+      // Focus choreography: the card nearest viewport center is full size,
+      // neighbors recede and dim.
+      const focusCards = () => {
+        const mid = window.innerWidth / 2;
+        for (const card of cards) {
+          const r = card.getBoundingClientRect();
+          const d = Math.abs(r.left + r.width / 2 - mid) / (window.innerWidth * 0.7);
+          const t = Math.max(0, 1 - d);
+          gsap.set(card, {
+            scale: 0.9 + 0.1 * t,
+            opacity: 0.45 + 0.55 * t,
+          });
+        }
+      };
+
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: wrapRef.current,
           start: "top top",
           end: () => `+=${distance()}`,
           pin: true,
           scrub: 1,
+          snap: {
+            snapTo: 1 / (cards.length - 1),
+            duration: { min: 0.2, max: 0.6 },
+            ease: "power1.inOut",
+            delay: 0.1,
+          },
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             if (progressRef.current) {
               progressRef.current.style.transform = `scaleX(${self.progress})`;
             }
+            focusCards();
           },
+          onRefresh: focusCards,
         },
       });
+      tl.to(track, { x: () => -distance(), ease: "none" }, 0);
+      if (ghost) {
+        tl.to(ghost, { x: () => -distance() * 0.35, ease: "none" }, 0);
+      }
+      focusCards();
     }, wrapRef);
 
     return () => {
@@ -194,6 +223,9 @@ export default function Work() {
             <div className="work-h-progress" aria-hidden>
               <div className="work-h-progress-fill" ref={progressRef} />
             </div>
+          </div>
+          <div className="work-h-ghost" aria-hidden>
+            SELECTED WORK
           </div>
           <div className="work-h-track" ref={trackRef}>
             {WORK.map((p) => (

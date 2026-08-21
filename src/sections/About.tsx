@@ -1,7 +1,32 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
+import {
+  motion,
+  MotionValue,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { AWARD, EDUCATION, STACK_LINE } from "../data/content";
 import ParallaxY from "../components/ParallaxY";
 import "./about.css";
+
+// One word of the statement, its opacity scrubbed to scroll position.
+function ScrubWord({
+  progress,
+  index,
+  total,
+  word,
+}: {
+  progress: MotionValue<number>;
+  index: number;
+  total: number;
+  word: string;
+}) {
+  const start = (index / total) * 0.85;
+  const end = start + 0.12;
+  const opacity = useTransform(progress, [start, end], [0.14, 1]);
+  return <motion.span style={{ opacity }}>{word} </motion.span>;
+}
 
 const STATEMENT =
   "My work spans two Axis Max Life platforms: MPro's policy onboarding and search, and Dolphin's event-driven reinstatement flows. I care about the paths users never see: the query plan, the cache hit, the failed retry.";
@@ -13,6 +38,11 @@ const BASE = import.meta.env.BASE_URL;
 export default function About() {
   const reduce = useReducedMotion();
   const words = STATEMENT.split(" ");
+  const statementRef = useRef<HTMLParagraphElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: statementRef,
+    offset: ["start 0.9", "end 0.45"],
+  });
 
   const fadeUp = (delay = 0) =>
     reduce
@@ -32,22 +62,15 @@ export default function About() {
             {reduce ? (
               <p className="about-statement">{STATEMENT}</p>
             ) : (
-              <p className="about-statement">
+              <p className="about-statement" ref={statementRef}>
                 {words.map((word, i) => (
-                  <motion.span
+                  <ScrubWord
                     key={`${word}-${i}`}
-                    initial={{ opacity: 0.12 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: i * 0.02,
-                      ease: "easeOut",
-                    }}
-                  >
-                    {word}
-                    {i < words.length - 1 ? " " : ""}
-                  </motion.span>
+                    progress={scrollYProgress}
+                    index={i}
+                    total={words.length}
+                    word={word}
+                  />
                 ))}
               </p>
             )}
