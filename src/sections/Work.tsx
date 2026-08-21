@@ -82,7 +82,7 @@ export default function Work() {
   const progressRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 900px)");
+    const mq = window.matchMedia("(min-width: 640px)");
     const update = () => setHorizontal(mq.matches && !reduce);
     update();
     mq.addEventListener("change", update);
