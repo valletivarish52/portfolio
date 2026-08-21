@@ -22,8 +22,9 @@ export default function Hero({ ready }: { ready: boolean }) {
   const y = useTransform(scrollYProgress, [0, 1], [0, 140]);
   const fade = useTransform(scrollYProgress, [0, 0.9], [1, 0.15]);
   // Kinetic exit: the two name lines shear apart as the visitor scrolls away.
-  const shearA = useTransform(scrollYProgress, [0, 1], [0, -90]);
-  const shearB = useTransform(scrollYProgress, [0, 1], [0, 90]);
+  // Viewport-relative so the name never slides past the container padding.
+  const shearA = useTransform(scrollYProgress, [0, 1], ["0vw", "-2.2vw"]);
+  const shearB = useTransform(scrollYProgress, [0, 1], ["0vw", "2.2vw"]);
 
   // Egg: clicking the outlined surname scrambles it, then it settles back.
   const [surname, setSurname] = useState(PROFILE.lastName);
