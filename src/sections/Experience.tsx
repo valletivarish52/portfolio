@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { ACHIEVEMENTS, EXPERIENCE } from "../data/content";
+import { ACHIEVEMENTS, CLIENT_WORK, EXPERIENCE, slugOf } from "../data/content";
 import CountUp from "../components/CountUp";
+import WorkCard from "../components/WorkCard";
 import "./experience.css";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -50,6 +51,20 @@ export default function Experience() {
               </div>
               <p className="exp-role-summary">{role.summary}</p>
             </motion.div>
+          ))}
+        </div>
+
+        <div className="exp-clients">
+          {CLIENT_WORK.map((p) => (
+            <WorkCard
+              key={p.name}
+              p={p}
+              onOpen={() =>
+                window.dispatchEvent(
+                  new CustomEvent("vv:case", { detail: slugOf(p.name) })
+                )
+              }
+            />
           ))}
         </div>
       </div>

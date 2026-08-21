@@ -43,10 +43,10 @@ export const EXPERIENCE = [
   {
     company: "Monocept",
     role: "Software Engineer",
-    meta: "Client: Axis Max Life Insurance · Dolphin and MPro",
+    meta: "Client: Axis Max Life Insurance",
     period: "May 2024 - Present",
     summary:
-      "Started on MPro, building configuration-driven onboarding and policy search for 12 products; now integrating policy reinstatement across Dolphin's event-driven platform of 26 microservices, with production ownership on both.",
+      "Two client platforms, owned in production end to end: builds, hotfixes, CI/CD and monitoring. The work itself is below.",
     points: [
       "Integrating policy-reinstatement processing into 8 Spring Boot microservices, propagating new case parameters through 15 downstream callback APIs with backward-compatible validation.",
       "Building reinstatement persistence and retrieval in DynamoDB across ingestion, asynchronous SQS processing and encrypted downstream callbacks, with JUnit and Mockito coverage.",
@@ -77,7 +77,11 @@ export interface WorkItem {
   link?: string;
 }
 
-export const WORK: WorkItem[] = [
+export const slugOf = (n: string) =>
+  n.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+// Client work at Monocept (rendered under Experience).
+export const CLIENT_WORK: WorkItem[] = [
   {
     name: "MPro",
     kind: "Insurance onboarding platform · Axis Max Life",
@@ -119,6 +123,10 @@ export const WORK: WorkItem[] = [
         "In progress, shipping service by service. The rule-engine exemption eliminates redundant document re-verification for every reinstatement case already cleared at issuance.",
     },
   },
+];
+
+// Personal projects (rendered in the Projects section).
+export const PROJECTS: WorkItem[] = [
   {
     name: "Hazri",
     kind: "Workforce platform · in active development",
@@ -142,7 +150,7 @@ export const WORK: WorkItem[] = [
   },
   {
     name: "Guardian Life Assurance",
-    kind: "Personal project · Full-stack insurance system",
+    kind: "Full-stack insurance system",
     desc: "A complete insurance system built end to end: policies, claims, payments and analytics dashboards, with access controlled by role.",
     stack: ["Spring Boot", "React", "MySQL", "Spring Security"],
     year: "2024",
@@ -177,6 +185,8 @@ export const WORK: WorkItem[] = [
     link: "https://github.com/valletivarish/buyzaar-product-ms",
   },
 ];
+
+export const ALL_CASES: WorkItem[] = [...CLIENT_WORK, ...PROJECTS];
 
 export const STACK_LINE =
   "Java / Spring Boot / Microservices / AWS / MongoDB / DynamoDB / Redis / Kafka / MySQL / Docker / Jenkins";

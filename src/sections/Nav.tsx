@@ -8,7 +8,7 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const SECTIONS: [string, string][] = [
   ["#experience", "Experience"],
-  ["#work", "Work"],
+  ["#work", "Projects"],
   ["#about", "About"],
   ["#contact", "Contact"],
 ];

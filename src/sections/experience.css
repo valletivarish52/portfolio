@@ -80,9 +80,25 @@
   color: #c9c9c4;
 }
 
+.exp-clients {
+  margin-top: clamp(40px, 6vw, 64px);
+  display: grid;
+  /* minmax(0, 1fr): never let a canvas's intrinsic width inflate a column */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px 32px;
+}
+
+.exp-clients .work-item {
+  min-width: 0;
+}
+
 @media (max-width: 900px) {
   .exp-stats {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .exp-clients {
+    grid-template-columns: 1fr;
   }
 }
 
