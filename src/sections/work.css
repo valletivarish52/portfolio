@@ -10,6 +10,61 @@
   margin-bottom: clamp(48px, 8vh, 96px);
 }
 
+/* Horizontal pinned pan (desktop, motion allowed) */
+.work-horizontal {
+  padding-block: 0;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.work-h-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  width: 100%;
+  padding-top: clamp(72px, 11vh, 120px);
+}
+
+.work-horizontal h2 {
+  margin-bottom: 0;
+}
+
+.work-h-progress {
+  position: relative;
+  width: 180px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.work-h-progress-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.work-h-track {
+  display: flex;
+  align-items: center;
+  gap: clamp(40px, 5vw, 72px);
+  padding-inline: clamp(20px, 4vw, 48px);
+  flex: 1;
+  will-change: transform;
+}
+
+.work-h-track .work-item {
+  flex: 0 0 auto;
+  width: min(560px, 66vw);
+}
+
+.work-horizontal .work-media {
+  aspect-ratio: 16 / 10;
+}
+
 .work-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);

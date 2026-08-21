@@ -147,6 +147,12 @@ export default function ThreeScene() {
         const t = clock.getElapsedTime();
         const party = performance.now() < partyUntil;
 
+        // Scroll-linked dolly: the camera eases forward and the field tilts
+        // slightly as the visitor scrolls away from the hero.
+        const sp = Math.min(window.scrollY / (window.innerHeight * 1.2), 1);
+        camera.position.z += (8 - sp * 2.2 - camera.position.z) * 0.05;
+        group.rotation.z += (sp * 0.06 - group.rotation.z) * 0.05;
+
         group.rotation.y += party ? 0.006 : 0.0004;
         group.rotation.x = Math.sin(t * 0.1) * 0.03;
         group.position.y = Math.sin(t * 0.15) * 0.2;

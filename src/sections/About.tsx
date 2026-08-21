@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { AWARD, EDUCATION, STACK_LINE } from "../data/content";
+import ParallaxY from "../components/ParallaxY";
 import "./about.css";
 
 const STATEMENT =
@@ -80,22 +81,26 @@ export default function About() {
             {EDUCATION.degree}, {EDUCATION.school}, {EDUCATION.period}
           </motion.p>
           <div className="about-award-media">
-            <motion.img
-              src={`${BASE}images/award-ceremony.jpg`}
-              alt="Varish receiving the Excellence Award on stage at Axis Max Life"
-              loading="lazy"
-              width="1600"
-              height="1200"
-              {...fadeUp(0.1)}
-            />
-            <motion.img
-              src={`${BASE}images/award-trophy.jpg`}
-              alt="Excellence Award trophy presented to Valleti Varish"
-              loading="lazy"
-              width="900"
-              height="1599"
-              {...fadeUp(0.2)}
-            />
+            <ParallaxY from={16} to={-16}>
+              <motion.img
+                src={`${BASE}images/award-ceremony.jpg`}
+                alt="Varish receiving the Excellence Award on stage at Axis Max Life"
+                loading="lazy"
+                width="1600"
+                height="1200"
+                {...fadeUp(0.1)}
+              />
+            </ParallaxY>
+            <ParallaxY from={34} to={-34}>
+              <motion.img
+                src={`${BASE}images/award-trophy.jpg`}
+                alt="Excellence Award trophy presented to Valleti Varish"
+                loading="lazy"
+                width="900"
+                height="1599"
+                {...fadeUp(0.2)}
+              />
+            </ParallaxY>
           </div>
         </div>
       </div>

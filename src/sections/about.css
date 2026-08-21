@@ -76,6 +76,12 @@
   align-items: stretch;
 }
 
+.about-award-media > div {
+  height: 100%;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
 .about-award-media img {
   display: block;
   width: 100%;
