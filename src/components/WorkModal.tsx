@@ -66,7 +66,11 @@ export default function WorkModal({
         className="wm-panel"
         role="dialog"
         aria-modal="true"
-        aria-label={`${item.name} case study`}
+        aria-label={
+          item.kind.includes("Planned")
+            ? `${item.name} plan`
+            : `${item.name} case study`
+        }
         data-lenis-prevent
         onClick={(e) => e.stopPropagation()}
         initial={{ opacity: 0, y: 44, scale: 0.98 }}
@@ -78,7 +82,7 @@ export default function WorkModal({
           ref={closeRef}
           className="wm-close"
           onClick={onClose}
-          aria-label="Close case study"
+          aria-label="Close"
         >
           ✕
         </button>

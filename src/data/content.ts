@@ -5,7 +5,7 @@ export const PROFILE = {
   role: "Backend Engineer, Insurance Platforms",
   availability: "Open to work",
   tagline:
-    "2+ years at Monocept, building Axis Max Life's policy platforms. I reduced the slowest policy searches from 15 seconds to under 3.",
+    "I have spent 2+ years at Monocept building Axis Max Life's policy platforms. I reduced the slowest policy searches from 15 seconds to under 3.",
   location: "Hyderabad, India",
   email: "varishvalleti52@gmail.com",
   phone: "+91 8919504427",
@@ -25,7 +25,7 @@ export const ACHIEVEMENTS = [
   {
     stat: "3000+",
     dir: "records restored",
-    label: "I resolved a live data-mapping incident and restored data integrity.",
+    label: "I resolved a live data-mapping incident on the policy platform.",
   },
   {
     stat: "50%",
@@ -35,7 +35,7 @@ export const ACHIEVEMENTS = [
   {
     stat: "600+",
     dir: "findings resolved",
-    label: "I resolved 600+ code-quality findings across the codebase.",
+    label: "I fixed SonarQube code-quality findings across the codebase.",
   },
 ];
 
@@ -157,7 +157,7 @@ export const WORK: WorkItem[] = [
   {
     name: "Buyzaar Product MS",
     kind: "E-commerce microservice",
-    desc: "A product catalog service for an online store, built to deploy and scale on its own behind an API gateway.",
+    desc: "I built this product catalog service for an online store to deploy and scale on its own behind an API gateway.",
     stack: ["Java", "Spring Boot", "Microservices"],
     year: "2026",
     seed: 233,

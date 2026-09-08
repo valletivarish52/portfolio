@@ -56,7 +56,7 @@ function WorkCard({ p, onOpen }: { p: WorkItem; onOpen: () => void }) {
         <p className="work-stack">{p.stack.join(" / ")}</p>
         {p.liveRepo && <LiveCommit repo={p.liveRepo} />}
         <button className="work-case" onClick={onOpen}>
-          Case study
+          {p.kind.includes("Planned") ? "The plan" : "Case study"}
         </button>
       </motion.div>
     </article>
