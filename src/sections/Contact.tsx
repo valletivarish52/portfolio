@@ -68,7 +68,7 @@ export default function Contact() {
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.8, ease: EASE }}
           >
-            Get in touch
+            Let's talk about your backend team.
           </motion.h2>
         </div>
 
@@ -100,9 +100,8 @@ export default function Contact() {
         </div>
 
         <p className="contact-colophon">
-          This site: React 18, TypeScript, Framer Motion, Three.js and Lenis.
-          Core bundle ~105 KB gzipped, WebGL code-split, reduced motion
-          respected.{" "}
+          I designed and built this site myself with React and TypeScript.
+          The code is public.{" "}
           <a
             href="https://github.com/valletivarish52/portfolio"
             target="_blank"

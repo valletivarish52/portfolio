@@ -16,13 +16,31 @@ export default function ThreeScene() {
     const width = container.clientWidth || window.innerWidth;
     const height = container.clientHeight || window.innerHeight;
 
+    // The starfield is decoration. If WebGL is unavailable or renderer
+    // creation fails, render nothing and leave the page untouched.
+    // ?nowebgl reproduces that path for testing.
+    if (new URLSearchParams(window.location.search).has("nowebgl")) return;
+    const probe = document.createElement("canvas");
+    if (
+      !probe.getContext("webgl2") &&
+      !probe.getContext("webgl") &&
+      !probe.getContext("experimental-webgl")
+    ) {
+      return;
+    }
+
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x0b0b0b, 0.055);
 
     const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 100);
     camera.position.set(0, 0, 8);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    } catch {
+      return;
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(width, height);
     container.appendChild(renderer.domElement);

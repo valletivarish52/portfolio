@@ -5,7 +5,7 @@ export const PROFILE = {
   role: "Backend Engineer, Insurance Platforms",
   availability: "Open to work",
   tagline:
-    "2+ years at Monocept, building Axis Max Life's policy platforms. Policy searches went from 15 seconds to under 3.",
+    "2+ years at Monocept, building Axis Max Life's policy platforms. I reduced the slowest policy searches from 15 seconds to under 3.",
   location: "Hyderabad, India",
   email: "varishvalleti52@gmail.com",
   phone: "+91 8919504427",
@@ -20,22 +20,22 @@ export const ACHIEVEMENTS = [
   {
     stat: "80%",
     dir: "faster",
-    label: "policy searches went from 15 seconds to under 3 seconds",
+    label: "The slowest policy searches dropped from 15 seconds to under 3.",
   },
   {
     stat: "3000+",
-    dir: "policies saved",
-    label: "every affected record restored after a production data incident",
+    dir: "records restored",
+    label: "I resolved a live data-mapping incident and restored data integrity.",
   },
   {
     stat: "50%",
     dir: "fewer errors",
-    label: "production issues halved through a quality initiative",
+    label: "A team initiative I contributed to halved production exceptions.",
   },
   {
     stat: "600+",
-    dir: "issues fixed",
-    label: "code-quality issues cleared across the codebase",
+    dir: "findings resolved",
+    label: "I resolved 600+ code-quality findings across the codebase.",
   },
 ];
 
@@ -46,7 +46,7 @@ export const EXPERIENCE = [
     meta: "Client: Axis Max Life Insurance · Dolphin and MPro",
     period: "May 2024 - Present",
     summary:
-      "Started on MPro, building configuration-driven onboarding and policy search for 12 products; now integrating policy reinstatement across Dolphin's event-driven platform of 26 microservices, with production ownership on both.",
+      "I built the product onboarding and policy search systems on MPro, and I am now integrating policy reinstatement across eight services on Dolphin. New products launch without a code release, the slowest searches answer in under 3 seconds instead of 15, and I own my systems in production.",
     points: [
       "Integrating policy-reinstatement processing into 8 Spring Boot microservices, propagating new case parameters through 15 downstream callback APIs with backward-compatible validation.",
       "Building reinstatement persistence and retrieval in DynamoDB across ingestion, asynchronous SQS processing and encrypted downstream callbacks, with JUnit and Mockito coverage.",
@@ -81,7 +81,7 @@ export const WORK: WorkItem[] = [
   {
     name: "MPro",
     kind: "Insurance onboarding platform · Axis Max Life",
-    desc: "The platform Axis Max Life uses to launch and issue insurance policies. 12 products run on it; I made launches config-driven and cut policy searches from 15 seconds to under 3.",
+    desc: "Axis Max Life launches and issues insurance policies on this platform. I converted its product rules into configuration, removed 3 to 4 database calls from every policy, and reduced the slowest searches from 15 seconds to under 3.",
     stack: ["Spring Boot", "Coherent Spark", "AWS S3", "CloudFront", "Redis"],
     year: "2025",
     seed: 47,
@@ -90,11 +90,11 @@ export const WORK: WorkItem[] = [
       overview:
         "MPro is Axis Max Life's policy issuance platform. I work across product onboarding, policy retrieval and partner integrations, with end-to-end production ownership.",
       problem:
-        "Product rules lived in code and the database: plan-code assignment alone cost 3-4 database calls per policy, every product launch needed a release, and worst-case policy retrieval ran full-collection scans that took up to 15 seconds.",
+        "Product rules lived in code and the database, so every new insurance product needed a release, and each policy spent 3 to 4 database calls on plan assignment alone. The slowest policy searches scanned entire collections and took up to 15 seconds.",
       approach:
         "Converted Excel-based business rules into JSON configuration served from S3 behind CloudFront, rebuilt onboarding config-first across retail and group insurance, replaced full-collection scans with MongoDB nested-document indexing, ran external API calls concurrently, and put policy retrieval behind Redis-backed OTP verification.",
       outcome:
-        "All 12 products are onboarded through configuration with no code changes, every policy costs 3-4 fewer database calls, worst-case retrieval latency is down 80% from 15s to under 3s, and the modernization program nearly halved new-product delivery timelines.",
+        "All 12 products now launch through configuration without a code release, every policy requires 3 to 4 fewer database calls, and the slowest searches answer in under 3 seconds instead of 15. The modernization program these migrations belonged to nearly halved new-product delivery timelines.",
       points: [
         "Rate-limited partner APIs exposing premium and benefit calculations and generating benefit-illustration PDFs for fintech and aggregator platforms.",
         "Production ownership end to end: hotfixes, CI/CD and monitoring across GitLab, Jenkins, Kibana and CloudWatch.",
@@ -105,14 +105,14 @@ export const WORK: WorkItem[] = [
   {
     name: "Dolphin",
     kind: "Policy reinstatement · Axis Max Life",
-    desc: "An event-driven platform of 26 microservices at Axis Max Life. I'm integrating policy reinstatement across 8 of them, with changes flowing through 15 downstream APIs without breaking existing consumers.",
+    desc: "Axis Max Life restores lapsed policies through this event-driven platform. I am integrating reinstatement across 8 services and delivering changes through 15 downstream APIs while every existing integration keeps working.",
     stack: ["Java", "Spring Boot", "DynamoDB", "SQS", "Microservices"],
     year: "2026",
     seed: 521,
     tint: "127, 224, 195",
     caseStudy: {
       problem:
-        "Reinstating a lapsed policy touches far more than one service: new case parameters must reach 15 downstream callback APIs across an event-driven platform of 26 microservices, without breaking any existing consumer.",
+        "Restoring a lapsed policy touches far more than one service. The new case information must reach 8 backend services and 15 downstream callback APIs, and none of them can break for the integrations that already depend on them.",
       approach:
         "I'm integrating reinstatement processing into 8 Spring Boot microservices: DynamoDB persistence across ingestion, asynchronous SQS processing and encrypted downstream callbacks, backward-compatible validation on every touched API, a configurable rule-engine exemption for document checks already cleared at original issuance, and JUnit/Mockito coverage throughout.",
       outcome:
@@ -120,30 +120,26 @@ export const WORK: WorkItem[] = [
     },
   },
   {
-    name: "Hazri",
-    kind: "Workforce platform · in active development",
-    desc: "My strongest production work is under NDA, so Hazri rebuilds those patterns in public: leave and approvals as real state machines, idempotent attendance ingestion, and a payroll run designed to never double-pay.",
-    stack: ["Java 21", "Spring Boot 3", "Spring Modulith", "PostgreSQL", "Redis"],
+    name: "Madad",
+    kind: "AI help desk · Personal project · Planned",
+    desc: "I am learning generative AI development with Spring AI, and Madad is the project I will build with it: an AI help desk that answers from real source material. The build begins in about a month, once I finish the course, and the code will be public from the first commit.",
+    stack: ["Spring AI", "Java", "Spring Boot"],
     year: "2026",
     seed: 318,
     tint: "179, 156, 230",
-    liveRepo: "valletivarish/hazri",
     caseStudy: {
-      overview:
-        "Hazri demonstrates, on a fictional company, the engineering patterns I build professionally under NDA. Development happens in public, commit by commit.",
       problem:
-        "My strongest production work lives behind a client NDA, so there is no public code that shows how I design workflow-heavy backend systems.",
+        "Help desks answer the same questions again and again, and the answers usually already exist in a company's own documents. Generative AI fits that problem well when it is built carefully.",
       approach:
-        "A Spring Modulith backend for a fictional workforce platform with enforced module boundaries: effective-dated employee records that never rewrite history, leave accrual and approval state machines with config-driven multi-level chains, idempotent attendance event ingestion for retrying devices, a re-runnable Spring Batch payroll run that joins attendance and leave into a register, and a transactional outbox with an idempotent consumer.",
+        "Right now I am learning: I am working through a generative AI course focused on Spring AI. Madad is the project I will build to put that learning into practice, in Java, on the stack I already work in.",
       outcome:
-        "In progress, in public. The roadmap ships module by module toward a one-command seeded demo, with architecture decision records and Testcontainers-backed tests along the way, including a duplicate-punch test asserting one attendance record and a payroll rerun test asserting zero double payments. The commit history is the status report.",
+        "Nothing is built yet, and I would rather say that plainly than pretend otherwise. I expect to start in about a month. This card will link to the repository once there is code to see.",
     },
-    link: "https://github.com/valletivarish/hazri",
   },
   {
     name: "Guardian Life Assurance",
     kind: "Personal project · Full-stack insurance system",
-    desc: "A complete insurance system built end to end: policies, claims, payments and analytics dashboards, with access controlled by role.",
+    desc: "I engineered a complete insurance management system: policies move through automated workflows, dashboards report analytics, and every role receives exactly the access it needs.",
     stack: ["Spring Boot", "React", "MySQL", "Spring Security"],
     year: "2024",
     seed: 172,
@@ -154,7 +150,7 @@ export const WORK: WorkItem[] = [
       approach:
         "Built one full-stack system on Spring Boot, React and MySQL: role-based access with Spring Security and JWT, automated policy lifecycle workflows from proposal onward, and indexed queries backing the reporting layer.",
       outcome:
-        "A working end-to-end product covering policies, customers, claims and payments, with analytics dashboards and reports that stay fast as data grows.",
+        "A working end-to-end product covering policies, customers and analytics dashboards, with reports that stay fast as the data grows.",
     },
     link: "https://github.com/valletivarish/guardian_life_assurance",
   },

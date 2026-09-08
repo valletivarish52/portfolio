@@ -1,4 +1,4 @@
-import { Suspense, lazy, useRef, useState } from "react";
+import { Component, ReactNode, Suspense, lazy, useRef, useState } from "react";
 import {
   motion,
   useReducedMotion,
@@ -11,6 +11,17 @@ import Magnetic from "../components/Magnetic";
 const ThreeScene = lazy(() => import("../three/ThreeScene"));
 
 const EASE = [0.16, 1, 0.3, 1] as const;
+
+// A failed canvas must never take the hero down with it.
+class SceneBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+  render() {
+    return this.state.failed ? null : this.props.children;
+  }
+}
 
 export default function Hero({ ready }: { ready: boolean }) {
   const reduce = useReducedMotion();
@@ -67,9 +78,11 @@ export default function Hero({ ready }: { ready: boolean }) {
 
   return (
     <header className="hero" id="top" ref={heroRef}>
-      <Suspense fallback={null}>
-        <ThreeScene />
-      </Suspense>
+      <SceneBoundary>
+        <Suspense fallback={null}>
+          <ThreeScene />
+        </Suspense>
+      </SceneBoundary>
       <motion.div
         className="container"
         style={reduce ? undefined : { y, opacity: fade }}
