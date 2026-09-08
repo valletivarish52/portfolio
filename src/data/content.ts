@@ -92,13 +92,13 @@ export const WORK: WorkItem[] = [
       problem:
         "Product rules lived in code and the database, so every new insurance product needed a release, and each policy spent 3 to 4 database calls on plan assignment alone. The slowest policy searches scanned entire collections and took up to 15 seconds.",
       approach:
-        "Converted Excel-based business rules into JSON configuration served from S3 behind CloudFront, rebuilt onboarding config-first across retail and group insurance, replaced full-collection scans with MongoDB nested-document indexing, ran external API calls concurrently, and put policy retrieval behind Redis-backed OTP verification.",
+        "I converted the Excel business rules into JSON configuration served from S3 behind CloudFront and rebuilt onboarding config-first across retail and group insurance. For search, I replaced full-collection scans with MongoDB nested-document indexing and ran the external API calls concurrently. Policy retrieval sits behind Redis-backed OTP verification.",
       outcome:
         "All 12 products now launch through configuration without a code release, every policy requires 3 to 4 fewer database calls, and the slowest searches answer in under 3 seconds instead of 15. The modernization program these migrations belonged to nearly halved new-product delivery timelines.",
       points: [
-        "Rate-limited partner APIs exposing premium and benefit calculations and generating benefit-illustration PDFs for fintech and aggregator platforms.",
-        "Production ownership end to end: hotfixes, CI/CD and monitoring across GitLab, Jenkins, Kibana and CloudWatch.",
-        "Resolved a production data mapping incident affecting 3000+ policies, restoring end-to-end data integrity.",
+        "I developed rate-limited partner APIs that expose premium and benefit calculations and generate benefit-illustration PDFs for fintech and aggregator platforms.",
+        "I own these systems in production, from hotfixes through CI/CD and monitoring across GitLab, Jenkins, Kibana and CloudWatch.",
+        "I resolved a production data-mapping incident that affected 3000+ policies and restored the data.",
       ],
     },
   },
@@ -114,7 +114,7 @@ export const WORK: WorkItem[] = [
       problem:
         "Restoring a lapsed policy touches far more than one service. The new case information must reach 8 backend services and 15 downstream callback APIs, and none of them can break for the integrations that already depend on them.",
       approach:
-        "I'm integrating reinstatement processing into 8 Spring Boot microservices: DynamoDB persistence across ingestion, asynchronous SQS processing and encrypted downstream callbacks, backward-compatible validation on every touched API, a configurable rule-engine exemption for document checks already cleared at original issuance, and JUnit/Mockito coverage throughout.",
+        "I am integrating reinstatement processing into 8 Spring Boot microservices, with DynamoDB persistence across ingestion, asynchronous SQS processing and encrypted downstream callbacks. Every API I touch keeps backward-compatible validation, and a configurable rule-engine exemption skips document checks that were already cleared at original issuance. I test the whole flow with JUnit and Mockito.",
       outcome:
         "In progress, shipping service by service. The rule-engine exemption eliminates redundant document re-verification for every reinstatement case already cleared at issuance.",
     },
@@ -131,7 +131,7 @@ export const WORK: WorkItem[] = [
       problem:
         "Help desks answer the same questions again and again, and the answers usually already exist in a company's own documents. Generative AI fits that problem well when it is built carefully.",
       approach:
-        "Right now I am learning: I am working through a generative AI course focused on Spring AI. Madad is the project I will build to put that learning into practice, in Java, on the stack I already work in.",
+        "Right now I am working through a generative AI course focused on Spring AI. Madad is where I will put that learning into practice, in Java, on the stack I already work in.",
       outcome:
         "Nothing is built yet, and I would rather say that plainly than pretend otherwise. I expect to start in about a month. This card will link to the repository once there is code to see.",
     },
@@ -139,7 +139,7 @@ export const WORK: WorkItem[] = [
   {
     name: "Guardian Life Assurance",
     kind: "Personal project · Full-stack insurance system",
-    desc: "I engineered a complete insurance management system: policies move through automated workflows, dashboards report analytics, and every role receives exactly the access it needs.",
+    desc: "I engineered a complete insurance management system where policies move through automated workflows and every role receives exactly the access it needs. Analytics dashboards sit on top.",
     stack: ["Spring Boot", "React", "MySQL", "Spring Security"],
     year: "2024",
     seed: 172,
@@ -148,9 +148,9 @@ export const WORK: WorkItem[] = [
       problem:
         "Insurance operations usually span disconnected tools: one system for policies, another for claims, spreadsheets for reporting, and no consistent access control across them.",
       approach:
-        "Built one full-stack system on Spring Boot, React and MySQL: role-based access with Spring Security and JWT, automated policy lifecycle workflows from proposal onward, and indexed queries backing the reporting layer.",
+        "I built one full-stack system on Spring Boot, React and MySQL. Spring Security and JWT handle role-based access, policy lifecycle workflows run automatically from proposal onward, and indexed queries keep the reporting layer fast.",
       outcome:
-        "A working end-to-end product covering policies, customers and analytics dashboards, with reports that stay fast as the data grows.",
+        "The result is a working product that covers policies, customers and analytics dashboards, and the reports stay fast as the data grows.",
     },
     link: "https://github.com/valletivarish/guardian_life_assurance",
   },
@@ -166,9 +166,9 @@ export const WORK: WorkItem[] = [
       problem:
         "When catalog logic is tangled into a monolith, it cannot scale or ship independently of the rest of the store.",
       approach:
-        "Extracted the product domain into its own Spring Boot service: REST APIs for catalog operations, configuration externalized to a config server, designed to sit behind an API gateway.",
+        "I extracted the product domain into its own Spring Boot service, with REST APIs for catalog operations and configuration externalized to a config server. It is designed to sit behind an API gateway.",
       outcome:
-        "An independently deployable catalog service that slots into a gateway-fronted setup alongside cart and order services.",
+        "The service deploys on its own and slots into a gateway-fronted setup alongside cart and order services.",
     },
     link: "https://github.com/valletivarish/buyzaar-product-ms",
   },
