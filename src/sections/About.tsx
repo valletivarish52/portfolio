@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { AWARD, EDUCATION, STACK_LINE } from "../data/content";
+import { AWARD, EDUCATION, PROFILE, STACK_LINE } from "../data/content";
+import LiveCommit from "../components/LiveCommit";
 import "./about.css";
 
 const STATEMENT =
@@ -52,6 +53,21 @@ export default function About() {
             )}
             <motion.p className="about-stack" {...fadeUp(0.1)}>
               {STACK_LINE}
+            </motion.p>
+            <motion.p className="about-dsa" {...fadeUp(0.15)}>
+              Daily DSA practice on{" "}
+              <a href={PROFILE.links.leetcode} target="_blank" rel="noreferrer">
+                LeetCode
+              </a>
+              , solutions committed to{" "}
+              <a
+                href="https://github.com/valletivarish/leetcode"
+                target="_blank"
+                rel="noreferrer"
+              >
+                valletivarish/leetcode ↗
+              </a>
+              <LiveCommit repo="valletivarish/leetcode" />
             </motion.p>
           </div>
 

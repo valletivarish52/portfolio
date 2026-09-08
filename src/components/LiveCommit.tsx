@@ -36,10 +36,11 @@ export default function LiveCommit({ repo }: { repo: string }) {
   }, [repo]);
 
   if (!date) return null;
+  // span, not p: also rendered inline inside paragraphs
   return (
-    <p className="work-live">
+    <span className="work-live">
       <span className="work-live-dot" aria-hidden />
       last commit {relative(date)}
-    </p>
+    </span>
   );
 }

@@ -48,6 +48,27 @@
   filter: grayscale(0%);
 }
 
+.about-dsa {
+  margin-top: 14px;
+  font-size: 13.5px;
+  color: var(--mut);
+}
+
+.about-dsa a {
+  color: #c9c9c4;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.about-dsa a:hover {
+  color: var(--accent);
+}
+
+.about-dsa .work-live {
+  display: inline-flex;
+  margin-left: 14px;
+}
+
 .about-award-band {
   margin-top: clamp(72px, 10vw, 120px);
   padding-top: clamp(32px, 5vw, 48px);
